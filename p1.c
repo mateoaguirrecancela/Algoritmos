@@ -54,6 +54,8 @@ void test1()
     int d[5] = {9, -2, 1, -7, -8};
     int e[5] = {15, -2, -5, -4, 16};
     int f[5] = {7, -5, 6, 7, -7};
+
+    printf("TEST 1\n");
     printf("sumaSubMax1\tsumaSubMax2\n");
     printf("%d\t\t", sumaSubMax1(a, 5));
     printf("%d\n", sumaSubMax2(a, 5));
@@ -85,10 +87,32 @@ void aleatorio(int v[], int n)
     } /* se generan números pseudoaleatorio entre -n y +n */
 }
 
+void test2()
+{
+    int n = 10;
+    int v[n];
+    printf("\n\nTEST 2\n");
+    printf("\t\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
+    for (int i = 0; i < n; i++)
+    {
+        aleatorio(v, n);
+        printf("[");
+        for (int j = 0; j < n; j++)
+        {
+            printf("%3d", v[j]);
+        }
+        printf(" ] \t");
+        printf("%d\t\t", sumaSubMax1(v, n));
+        printf("%d\n", sumaSubMax2(v, n));
+    }
+}
+
+// MAIN
 int main()
 {
-
+    inicializar_semilla();
     test1();
+    test2();
 
     return 0;
 }
