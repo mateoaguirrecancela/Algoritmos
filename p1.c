@@ -54,13 +54,19 @@ void test1()
     int d[5] = {9, -2, 1, -7, -8};
     int e[5] = {15, -2, -5, -4, 16};
     int f[5] = {7, -5, 6, 7, -7};
-
-    printf("%d\n", sumaSubMax1(a, 5));
-    printf("%d\n", sumaSubMax1(b, 5));
-    printf("%d\n", sumaSubMax1(c, 5));
-    printf("%d\n", sumaSubMax1(d, 5));
-    printf("%d\n", sumaSubMax1(e, 5));
-    printf("%d\n", sumaSubMax1(f, 5));
+    printf("sumaSubMax1\tsumaSubMax2\n");
+    printf("%d\t\t", sumaSubMax1(a, 5));
+    printf("%d\n", sumaSubMax2(a, 5));
+    printf("%d\t\t", sumaSubMax1(b, 5));
+    printf("%d\n", sumaSubMax2(b, 5));
+    printf("%d\t\t", sumaSubMax1(c, 5));
+    printf("%d\n", sumaSubMax2(c, 5));
+    printf("%d\t\t", sumaSubMax1(d, 5));
+    printf("%d\n", sumaSubMax2(d, 5));
+    printf("%d\t\t", sumaSubMax1(e, 5));
+    printf("%d\n", sumaSubMax2(e, 5));
+    printf("%d\t\t", sumaSubMax1(f, 5));
+    printf("%d\n", sumaSubMax2(f, 5));
 }
 
 // Test 2
