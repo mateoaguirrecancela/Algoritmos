@@ -89,11 +89,11 @@ void aleatorio(int v[], int n)
 
 void test2()
 {
-    int n = 10;
+    int n = 9;
     int v[n];
     printf("\n\nTEST 2\n");
     printf("\t\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i <= n; i++)
     {
         aleatorio(v, n);
         printf("[");
@@ -101,7 +101,7 @@ void test2()
         {
             printf("%3d", v[j]);
         }
-        printf(" ] \t");
+        printf(" ] \t\t");
         printf("%d\t\t", sumaSubMax1(v, n));
         printf("%d\n", sumaSubMax2(v, n));
     }
