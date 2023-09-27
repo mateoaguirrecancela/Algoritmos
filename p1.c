@@ -125,19 +125,19 @@ void test2()
 }
 
 void test3(){
-    int n = 500;
+    int s, n = 2;
     double inicio, final, t;
     int v[n];
 
     printf("SumaSubMax 1\n");
     printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
-    while(n<=3200){
+    while(n<=32){
         for (int i = 0; i <= n; i++){
-        aleatorio(v, n);
+            aleatorio(v, n);
         }
 
         inicio = microsegundos();
-        sumaSubMax1(v, n);
+        s = sumaSubMax1(v, n);
         final= microsegundos();
 
         t=final-inicio;
@@ -147,16 +147,16 @@ void test3(){
         n = n*2;
     }
 
-    n=500;
+    /*n=500;
     printf("SumaSubMax 2\n");
     printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
     while(n<=3200){
         for (int i = 0; i <= n; i++){
-        aleatorio(v, n);
+            aleatorio(v, n);
         }
 
         inicio = microsegundos();
-        sumaSubMax2(v, n);
+        s = sumaSubMax2(v, n);
         final= microsegundos();
 
         t=final-inicio;
@@ -165,6 +165,7 @@ void test3(){
 
         n = n*2;
     }
+    */
 }
 
 
