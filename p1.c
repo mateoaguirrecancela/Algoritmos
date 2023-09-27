@@ -1,9 +1,21 @@
-//Practica 1 Algoritmos
-//Autor 1: Mateo Aguirre Cancela    |   mateo.aguirre
-//Autor 2: Martin del Rio Alvarez   |   martin.delrio.alvarez
-//Grupo: 2.2
+// Practica 1 Algoritmos
+// Autor 1: Mateo Aguirre Cancela    |   mateo.aguirre
+// Autor 2: Martin del Rio Alvarez   |   martin.delrio.alvarez
+// Grupo: 2.2
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <math.h>
+
+double microsegundos()          /* obtiene la hora del sistema en microsegundos */
+{
+    struct timeval t;
+    if (gettimeofday(&t, NULL) < 0)
+        return 0.0;
+    return (t.tv_usec + t.tv_sec * 1000000.0);
+}
 
 // Algoritmo 1
 int sumaSubMax1(int v[], int n)
@@ -112,12 +124,44 @@ void test2()
     }
 }
 
+void test3(){
+    int n = 500;
+    double inicio, final, t;
+    int v[n];
+
+    printf("SumaSubMax 1\n");
+    printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
+    while(n<=3200){
+        for (int i = 0; i <= n; i++){
+        aleatorio(v, n);
+        }
+
+        inicio = microsegundos();
+        sumaSubMax1(v, n);
+        final= microsegundos();
+
+        t=final-inicio;
+
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n", n, t, t/(pow(n, 1.8)), t/(pow(n, 2)), t/(pow(n, 2.2)));
+
+        n = n*2;
+    }
+    
+}
+
+
+
 // MAIN
 int main()
 {
     inicializar_semilla();
+
     test1();
+
     test2();
+
+    test3();
+
 
     return 0;
 }
