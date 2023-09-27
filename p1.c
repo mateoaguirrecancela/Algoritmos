@@ -146,7 +146,25 @@ void test3(){
 
         n = n*2;
     }
-    
+
+    n=500;
+    printf("SumaSubMax 2\n");
+    printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
+    while(n<=3200){
+        for (int i = 0; i <= n; i++){
+        aleatorio(v, n);
+        }
+
+        inicio = microsegundos();
+        sumaSubMax2(v, n);
+        final= microsegundos();
+
+        t=final-inicio;
+
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n", n, t, t/(pow(n, 1.8)), t/(pow(n, 2)), t/(pow(n, 2.2)));
+
+        n = n*2;
+    }
 }
 
 
@@ -157,11 +175,8 @@ int main()
     inicializar_semilla();
 
     test1();
-
     test2();
-
     test3();
-
 
     return 0;
 }
