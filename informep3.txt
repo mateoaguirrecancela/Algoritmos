@@ -1,0 +1,121 @@
+
+ ----- AUTORES: ------
+ - Fernando Iglesias Iglesias  LOGIN: f.iglesias2@udc.es
+ - Anxo Gallego Mato           LOGIN: anxo.gallego@udc.es
+ - Luis López García           LOGIN: luis.lopez.garcia@udc.es
+ 
+ ----- INTRODUCCIÓN: -----
+ 
+ El objetivo de esta práctica es estudiar la complejidad computacional de las operaciones insertar y buscar (elementos) en árboles binarios de búsqueda.
+ 
+ Se generará un vector con n números enteros aleatorios comprendidos en el intervalo [-n , n], dicho vector se insertará en un arbol vacío.
+ 
+ Posteriormente se generará otro vector aleatorio diferente del mismo tamaño e intervalo de números enteros y se realizará una búsqueda de los números de ese vector en el árbol anterior.
+
+----- TEST: -----
+
+- Primero se realizará un test para comprobar que las funciones que se utilizan en la práctica están implementadas correctamente:
+
+Creamos un arbol nuevo
+arbol vacio: ().
+La altura del arbol es: -1
+ (  ( 1 ( 2 )  ) 3 (  ( 4 ) 5 )  ) 
+La altura del arbol es: 2
+encuentro 1 y se repite 1 veces
+encuentro 2 y se repite 1 veces
+encuentro 3 y se repite 1 veces
+encuentro 4 y se repite 1 veces
+encuentro 5 y se repite 2 veces
+busco 6 y no encuentro nada
+Se elminan todos los nodos del arbol:
+arbol vacio: ().
+La altura del arbol es: -1
+
+----- INFORMACIÓN DE LA MÁQUINA: -----
+
+-La máquina utilizada para realizar los cálculos de los tiempos es la siguiente:
+
+-Máquina: Intel Core i7-1065G7
+-En el sistema operativo: Linux Ubuntu 22.04
+-Kernel: 5.15.0-52-generic
+
+-Obteniendo los siguientes resultados:
+
+----- ACLARACIONES: -----
+
+-Todas las unidades de tiempo están medidas en microsegundos.
+
+-El valor de n sigue una progresión geométrica de razón dos, comenzando desde 1000 hasta 256000, pero hay que tener en cuenta que algunos valores de n no se contemplan en las tablas por el siguiente motivo:
+
+-Para los resultados menores a 500 microsegundos no se ha utilizado el mismo método que en las anteriores prácticas, pues si aplicamos dicho método, al repetir K veces la operación correspondiente, después de esta, se tendría que vaciar el árbol, por lo que en el tiempo obtenido tendríamos incluído lo que se ha tardado en vaciar el árbol. 
+
+Se podría utilizar una técnica que consiste en restarle al tiempo obtenido el tiempo que se tarda en hacer n*k frees (siendo k una constante que representaría las veces que se repetería la operación) pero para evitar problemas de memoria pues para tan solo n=1000 se tendrían que generar 1000000 de nodos por lo que hemos decidido no mostar los resultados con tiempos inferiores a 500 microsegundos.
+
+----- TABLAS DE TIEMPOS: -----
+
+Tabla tiempos: 
+        n       t_ins     t_bus
+     8000      1099.0    1200.0  
+    16000      2841.0    2937.0
+    32000      6147.0    6674.0
+    64000     14783.0   15170.0 
+   128000     35526.0   35973.0 
+   256000     80862.0   85612.0
+      
+   
+-Tabla INSERCIÓN n elementos: 
+          
+        n       t(n)        t(n)/f(n)       t(n)/g(n)       t(n)/h(n)
+     8000     1099.0        0.215309        0.014526        0.001536
+    16000     2841.0        0.288109        0.015788        0.001404  #
+    32000     6147.0        0.322679        0.014362        0.001074
+    64000    14783.0        0.401691        0.014522        0.000913
+   128000    35526.0        0.499686        0.014674        0.000776
+   256000    80862.0        0.588730        0.014043        0.000624
+
+-COTAS:
+c. subestimada:  n^0.95  ;   f(n)
+c. ajustada:     n^1.25  ;   g(n)
+c. sobrestimada: n^1.5   ;   h(n)
+
+(#) ANOMALIAS:
+Se puede observar una ligera anomalía para el valor de n=16000 (#) que no se ha podido impedir
+
+-OBSERVACIONES:
+Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+Al contrario ocurre con la sobrestimada, pues decrecen.
+Y la cota ajustada se aproxima 0.014
+
+
+-Tabla BUSQUEDA n elementos: 
+
+        n       t(n)        t(n)/f(n)       t(n)/g(n)       t(n)/h(n)
+     8000     1200.0        0.219815        0.014830        0.001568
+    16000     2937.0        0.290036        0.015893        0.001413  #
+    32000     6674.0        0.335592        0.014937        0.001117
+    64000    15170.0        0.410223        0.014831        0.000932
+   128000    35973.0        0.504510        0.014815        0.000783
+   256000    85612.0        0.599331        0.014295        0.000636
+
+-COTAS:
+c. subestimada:  n^0.95  ;   f(n)
+c. ajustada:     n^1.25  ;   g(n)
+c. sobrestimada: n^1.5   ;   h(n)
+
+(#) ANOMALIAS:
+Se puede observar una ligera anomalía para el valor de n=16000 (#) que no se ha podido impedir
+
+-OBSERVACIONES:
+Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+Al contrario ocurre con la sobrestimada, pues decrecen.
+Y la cota ajustada se aproxima 0.0142
+
+----- CONCLUSIONES: -----
+
+-Analizando los tiempos obtenidos, como era de esperar, los tiempos incrementan notablemente según crece n.
+
+-Además, observando los resultados deducimos que la operacion buscar ha sido más lenta que insertar, pero no por excesiva diferencia. 
+
+-Que se obtengan resultados no demasiado diferentes explica que las cotas que se aplican para ambas operaciones sean las mismas. Pues tienen una complejidad computacional similar.
+
+
