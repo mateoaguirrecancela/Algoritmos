@@ -1,0 +1,52 @@
+AUTORES:
+ - Martín Del Río Álvarez          martin.delrio.alvarez@udc.es
+ - Mateo Aguirre Cancela           mateo.aguirre@udc.es
+ 
+INTRODUCCIÓN:
+	Esta práctica se enfoca en analizar la complejidad computacional de dos algoritmos (sumaSubMax1 y sumaSubMax2) diseñados para encontrar la suma máxima de una subsecuencia en un arreglo de números enteros. 
+	Se generan arreglos aleatorios que actúan como entrada para evaluar el rendimiento de estos algoritmos.
+
+OBJETIVO:
+	El objetivo es comparar y estudiar la eficiencia de ambos algoritmos al procesar diferentes tamaños y contenidos de arreglos. 
+	El código proporcionado ejecuta pruebas y mide el tiempo de ejecución de los algoritmos, permitiendo comprender su desempeño y su utilidad práctica. 
+	Este análisis contribuirá a una mejor comprensión de cuándo y cómo aplicar estos algoritmos eficientemente en distintos contextos.
+
+TEST:
+	Primero se realizará un test para comprobar que las funciones funcionan correctamente.
+	Después para cada uno de los algoritmos se determinarán los tiempos de ejecución de los vectores aleatorios de tamaño n igual a 500,1000,2000,4000,8000,16000 y 32000
+
+ESPECIFIACIONES DE LA MÁQUINA:
+	·Modelo: HUAWEI MateBook 14 AMD 2021
+	·Procesador: AMD Ryzen 5 5500U
+	·Memoria RAM: 8gb
+	·Sistema operativo: Linux Ubuntu 22.04.3 LTS
+	·Kernel: 6.2.0-33-generic
+
+ACLARACIONES:
+	Todas las unidades de tiempo están medidas en microsegundos.
+
+TABLAS DE TIEMPOS:
+          
+    SumaSubMax 1
+    n               t(n)            t(n)/n^1.8      t(n)/n^2        t(n)/n^2.2
+    500             139.000000      0.0019269427    0.0005560000    0.0001604282
+    1000            277.000000      0.0011027569    0.0002770000    0.0000695793
+    2000            575.000000      0.0006573760    0.0001437500    0.0000314342
+    4000            944.000000      0.0003099303    0.0000590000    0.0000112316
+    8000            766.000000      0.0000722215    0.0000119687    0.0000019835
+    16000           1535.000000     0.0000415616    0.0000059961    0.0000008651
+    32000           3082.000000     0.0000239642    0.0000030098    0.0000003780
+
+	SumaSubMax 2
+    n               t(n)            t(n)/n^1.8      t(n)/n^2        t(n)/n^2.2
+    500             11.000000       0.0001524919    0.0000440000    0.0000126958
+    1000            22.000000       0.0000875836    0.0000220000    0.0000055262
+    2000            42.000000       0.0000480170    0.0000105000    0.0000022961
+    4000            111.000000      0.0000364431    0.0000069375    0.0000013207
+    8000            172.000000      0.0000162168    0.0000026875    0.0000004454
+    16000           341.000000      0.0000092329    0.0000013320    0.0000001922
+    32000           686.000000      0.0000053340    0.0000006699    0.0000000841
+
+CONCLUSIONES:
+	Analizando los tiempos obtenidos observamos que los tiempos decrecen según crece n. 
+	Además, podemos afirmar que la función SumaSubMax2 es mucho más eficiente que la función SumaSubMax1, como se puede observar en la tabla de tiempos.
