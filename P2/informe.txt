@@ -16,7 +16,7 @@ ESPECIFIACIONES DE LA MÁQUINA:
 	·Kernel: 6.2.0-33-generic
 
 ACLARACIONES:
-	
+	Todas las unidades de tiempo estan medidas en microsegundos.
 
 TABLAS DE TIEMPOS:
           
