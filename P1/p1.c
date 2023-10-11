@@ -21,10 +21,11 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
 int sumaSubMax1(int v[], int n){
     int sumaMax = 0;
     int estaSuma;
+    int i, j;
 
-    for (int i = 0; i < n; i++){
+    for (i = 0; i < n; i++){
         estaSuma = 0;
-        for (int j = i; j < n; j++){
+        for (j = i; j < n; j++){
             estaSuma += v[j];
             if (estaSuma > sumaMax){
                 sumaMax = estaSuma;
@@ -39,8 +40,9 @@ int sumaSubMax1(int v[], int n){
 int sumaSubMax2(int v[], int n){
     int estaSuma = 0;
     int sumaMax = 0;
+    int j;
 
-    for (int j = 0; j < n; j++){
+    for (j = 0; j < n; j++){
         estaSuma += v[j];
 
         if (estaSuma > sumaMax){
@@ -93,14 +95,14 @@ void aleatorio(int v[], int n){
 }
 
 void test2(){
-    int n = 9;
+    int i, j, n = 9;
     int v[n];
     printf("\n\nTEST 2\n");
     printf("\t\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
-    for (int i = 0; i <= n; i++){
+    for (i = 0; i <= n; i++){
         aleatorio(v, n);
         printf("[");
-        for (int j = 0; j < n; j++){
+        for (j = 0; j < n; j++){
             printf("%3d", v[j]);
         }
         printf(" ] \t\t");
@@ -110,37 +112,42 @@ void test2(){
 }
 
 void test3(){
-    int a = 9, n = 500;
+    int i, n = 500;
     double inicio, final, t;
-    int v[a];
-    for (int i = 0; i <= a; i++){
-        aleatorio(v, a);
-    }
+    
     printf("\n\nSumaSubMax 1\n");
     printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
     while (n <= 32000){
-        inicio = microsegundos();
-        for (int j = 0; j < n; j++){
-            sumaSubMax1(v, a);
+        int v[n];
+        for (i = 0; i <= n; i++){
+            aleatorio(v, n);
         }
+
+        inicio = microsegundos();
+        sumaSubMax1(v, n);
         final = microsegundos();
         t = final - inicio;
+
         printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
-               n, t, t / (pow(n, 1.8)), t / (pow(n, 2)), t / (pow(n, 2.2)));
+        n, t, t / (pow(n, 1.8)), t / (pow(n, 2)), t / (pow(n, 2.2)));
         n = n * 2;
     }
     n = 500;
     printf("\n\nSumaSubMax 2\n");
     printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
     while (n <= 32000){
-        inicio = microsegundos();
-        for (int j = 0; j < n; j++){
-            sumaSubMax2(v, a);
+        int v[n];
+        for (i = 0; i <= n; i++){
+            aleatorio(v, n);
         }
+
+        inicio = microsegundos();
+        sumaSubMax2(v, n);
         final = microsegundos();
         t = final - inicio;
+
         printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
-               n, t, t / (pow(n, 1.8)), t / (pow(n, 2)), t / (pow(n, 2.2)));
+        n, t, t / (pow(n, 0.8)), t / n, t / (pow(n, 1.2)));
         n = n * 2;
     }
 }
