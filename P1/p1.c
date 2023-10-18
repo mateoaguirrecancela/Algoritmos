@@ -95,34 +95,33 @@ void aleatorio(int v[], int n){
 }
 
 void test2(){
-    int i, j, n = 9;
+    int i, n = 9;
     int v[n];
     printf("\n\nTEST 2\n");
     printf("\t\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
-    for (i = 0; i <= n; i++){
-        aleatorio(v, n);
-        printf("[");
-        for (j = 0; j < n; j++){
-            printf("%3d", v[j]);
-        }
-        printf(" ] \t\t");
-        printf("%d\t\t", sumaSubMax1(v, n));
-        printf("%d\n", sumaSubMax2(v, n));
+    
+    aleatorio(v, n);
+    printf("[");
+    for (i = 0; i < n; i++){
+        printf("%3d", v[i]);
     }
+    printf(" ] \t\t");
+    printf("%d\t\t", sumaSubMax1(v, n));
+    printf("%d\n", sumaSubMax2(v, n));
+
 }
 
 void test3(){
-    int i, n = 500;
+    int n = 500;
     double inicio, final, t;
     
     printf("\n\nSumaSubMax 1\n");
     printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
     while (n <= 32000){
         int v[n];
-        for (i = 0; i <= n; i++){
-            aleatorio(v, n);
-        }
-
+        
+        aleatorio(v, n);
+        
         inicio = microsegundos();
         sumaSubMax1(v, n);
         final = microsegundos();
@@ -137,9 +136,8 @@ void test3(){
     printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
     while (n <= 32000){
         int v[n];
-        for (i = 0; i <= n; i++){
-            aleatorio(v, n);
-        }
+        
+        aleatorio(v, n);
 
         inicio = microsegundos();
         sumaSubMax2(v, n);

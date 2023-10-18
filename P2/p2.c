@@ -133,7 +133,7 @@ void test3(){
 
 //Test Tiempos Ejecucion
 void test_ord(){
-    int i,j,n=500;
+    int i, n=500;
     double inicioo, inicios, finalo, finals, to, ts;
 
     printf("Vector en Orden Ascendiente. Ordenacion por Insercion\n");
@@ -147,7 +147,7 @@ void test_ord(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
         n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
         n = n * 2;
@@ -165,19 +165,23 @@ void test_ord(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
         n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
     }
+}
 
-    /*
+void test_des(){
+    int i,j,n=500;
+    double inicioo, inicios, finalo, finals, to, ts;
+
+    printf("\n\nVector en Orden Descendente. Ordenacion por Insercion\n");
     while (n <= 32000){
-        int  v[n], w[n];
+        int  v[n];
         j=n;
         for (i = 0; i < n; i++){
             v[i]=j;
-            w[i]=j;
             j--;
         }
         inicioo=microsegundos();
@@ -185,54 +189,71 @@ void test_ord(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("Vector en Orden Descendente. Ordenacion por Insercion\n");
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
         n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
+        n = n * 2;
+    }
 
+    n=500;
+    printf("\n\nVector en Orden Descendente. Ordenacion Shell\n");
+    while (n <= 32000){
+        int  v[n];
+        j=n;
+        for (i = 0; i < n; i++){
+            v[i]=j;
+            j--;
+        }
         inicios=microsegundos();
-        ord_shell(w, n);
+        ord_shell(v, n);
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("Vector en Orden Descendente. Ordenacion Shell\n");
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
         n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
     }
+}
+
+void test_alt(){
+    int n=500;
+    double inicioo, inicios, finalo, finals, to, ts;
     
+    printf("\n\nVector Desordenado. Ordenacion por Insercion\n");
     while (n <= 32000){
-        int  v[n], w[n];
+        int  v[n];
 
         aleatorio(v, n);
-        for (i = 0; i < n; i++) {
-            w[i] = v[i];
-        }
-        //aleatorio(w, n);  pone distintos numeros
         
         inicioo=microsegundos();
         ord_ins(v, n);
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("Vector Desordenado. Ordenacion por Insercion\n");
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
         n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
+        n = n * 2;
+    }
 
+    n=500;
+    printf("\n\nVector Desordenado. Ordenacion Shell\n");
+    while (n <= 32000){
+        int  v[n];
+
+        aleatorio(v, n);
+                
         inicios=microsegundos();
-        ord_shell(w, n);
+        ord_shell(v, n);
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("Vector Desordenado. Ordenacion Shell\n");
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
         n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
     }
-*/    
 }
 
 int main(){
@@ -242,6 +263,8 @@ int main(){
     test2();
     test3();
     test_ord();
+    test_des();
+    test_alt();
 
     return 0;
 }
