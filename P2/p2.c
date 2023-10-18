@@ -135,8 +135,8 @@ void test3(){
 void test_ord(){
     int i, n=500;
     double inicioo, inicios, finalo, finals, to, ts;
-
-    printf("Vector en Orden Ascendiente. Ordenacion por Insercion\n");
+    printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
+    printf("Ordenacion por Insercion\n");
     while (n <= 32000){
         int  v[n];
         for (i = 0; i < n; i++){
@@ -154,7 +154,7 @@ void test_ord(){
     }
 
     n=500;
-    printf("\n\nVector en Orden Ascendiente. Ordenacion Shell\n");
+    printf("\nOrdenacion Shell\n");
     while (n <= 32000){
         int  v[n];
         for (i = 0; i < n; i++){
@@ -176,7 +176,8 @@ void test_des(){
     int i,j,n=500;
     double inicioo, inicios, finalo, finals, to, ts;
 
-    printf("\n\nVector en Orden Descendente. Ordenacion por Insercion\n");
+    printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
+    printf("Ordenacion por Insercion\n");
     while (n <= 32000){
         int  v[n];
         j=n;
@@ -196,7 +197,7 @@ void test_des(){
     }
 
     n=500;
-    printf("\n\nVector en Orden Descendente. Ordenacion Shell\n");
+    printf("\nOrdenacion Shell\n");
     while (n <= 32000){
         int  v[n];
         j=n;
@@ -220,7 +221,8 @@ void test_alt(){
     int n=500;
     double inicioo, inicios, finalo, finals, to, ts;
     
-    printf("\n\nVector Desordenado. Ordenacion por Insercion\n");
+    printf("\n\nVECTOR DESORDENADO\n");
+    printf("Ordenacion por Insercion\n");
     while (n <= 32000){
         int  v[n];
 
@@ -238,7 +240,7 @@ void test_alt(){
     }
 
     n=500;
-    printf("\n\nVector Desordenado. Ordenacion Shell\n");
+    printf("\nOrdenacion Shell\n");
     while (n <= 32000){
         int  v[n];
 
