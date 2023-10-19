@@ -147,7 +147,7 @@ void test_ord(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        printf("\t%6d\t\t%f\t%f\t%f\t%f\n",
         n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
         n = n * 2;
@@ -165,7 +165,7 @@ void test_ord(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        printf("\t%6d\t\t%f\t%f\t%f\t%f\n",
         n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
@@ -190,7 +190,7 @@ void test_des(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        printf("\t%6d\t\t%f\t%f\t%f\t%f\n",
         n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
         n = n * 2;
@@ -210,7 +210,7 @@ void test_des(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        printf("\t%6d\t\t%f\t%f\t%f\t%f\n",
         n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
@@ -233,7 +233,7 @@ void test_alt(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        printf("\t%6d\t\t%f\t%f\t%f\t%f\n",
         n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
         n = n * 2;
@@ -251,7 +251,7 @@ void test_alt(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        printf("\t%6d\t\t%f\t%f\t%f\t%f\n",
         n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
