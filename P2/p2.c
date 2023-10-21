@@ -161,22 +161,9 @@ void test_ord(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        if(to < 500){
-            promedio=true;
-            inicioo = microsegundos();
-            for (i = 0; i < k; ++i) {
-                for (j = 0; j < n; j++){
-                    v[j]=j;
-                }
-                ord_ins(v,n);
-            }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
-            
-            to = t1/k;
-        }
-        tabla(n, to, promedio);
-        
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+    
         n = n * 2;
     }
 
@@ -193,21 +180,8 @@ void test_ord(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        if(to < 500){
-            promedio=true;
-            inicioo = microsegundos();
-            for (i = 0; i < k; ++i) {
-                for (j = 0; j < n; j++){
-                    v[j]=j;
-                }
-                ord_shell(v,n);
-            }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
-            
-            to = t1/k;
-        }
-        tabla(n, to, promedio);
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
     }
@@ -266,23 +240,8 @@ void test_des(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        if(to < 500){
-            promedio=true;
-            inicioo = microsegundos();
-            for (i = 0; i < k; ++i) {
-                s=n;
-                for (j = 0; j < n; j++){
-                    v[j]=s;
-                    s--;
-                }
-                ord_shell(v,n);
-            }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
-        
-            to = t1/k;
-        }
-        tabla(n, to, promedio);
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
     }
@@ -305,19 +264,8 @@ void test_alt(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        if(to < 500){
-            promedio=true;
-            inicioo = microsegundos();
-            for (i = 0; i < k; ++i) {
-                aleatorio(v,n);
-                ord_ins(v,n);
-            }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
-        
-            to = t1/k;
-        }
-        tabla(n, to, promedio);
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
     
         n = n * 2;
     }
@@ -334,19 +282,8 @@ void test_alt(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        if(to < 500){
-            promedio=true;
-            inicioo = microsegundos();
-            for (i = 0; i < k; ++i) {
-                aleatorio(v,n);
-                ord_shell(v,n);
-            }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
-        
-            to = t1/k;
-        }
-        tabla(n, to, promedio);
+        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
 
         n = n * 2;
     }
