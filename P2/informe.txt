@@ -3,8 +3,11 @@ AUTORES:
  - Mateo Aguirre Cancela           mateo.aguirre@udc.es
  
 INTRODUCCIÓN:
+        Esta práctica se enfoca en analizar la complejidad computacional de dos algoritmos de ordenación: ordenación por inserción y ordenación shell. 
+	Se generan arreglos aleatorios que actúan como entrada para evaluar el rendimiento de estos algoritmos en diversas situaciones.
 
 OBJETIVO:
+        El objetivo principal de esta práctica es medir los tiempos de ejecución de los algoritmos de ordenación por inserción y ordenación shell en diferentes condiciones, como datos ordenados de manera ascendente, descendente y desordenados.
 
 TEST:
 
@@ -41,37 +44,11 @@ TABLAS DE TIEMPOS:
     32000           686.000000      0.0000053340    0.0000006699    0.0000000841
 
 CONCLUSIONES:
+        El de insercion es mucho mas rapido cuando le das un vector ordenado, en cambio cuando le das 
 
+        En resumen, esta práctica permitió analizar y comparar el rendimiento de los algoritmos de ordenación por inserción y ordenación shell en diversas condiciones. Los resultados destacan la importancia de elegir el algoritmo de ordenación adecuado según la naturaleza de los datos y las características del hardware y el entorno.
+        Los resultados y conclusiones de esta práctica proporcionan información valiosa para la selección de algoritmos de ordenación en aplicaciones del mundo real, considerando las restricciones de tiempo y recursos de la máquina utilizada.
 
-
-
-
-
-TEST 1
-Inicializacion Aleatoria
-[-10  5  2-11 10  6-11 13 -1-12 -9  6  7 11 -1  3 -7 ] 
-Ordenacion por Insercion
-[-12-11-11-10 -9 -7 -1 -1  2  3  5  6  6  7 10 11 13 ] 
-Ordenacion Shell
-[-12-11-11-10 -9 -7 -1 -1  2  3  5  6  6  7 10 11 13 ] 
-
-
-TEST 2
-Inicializacion Descente
-[ 10  9  8  7  6  5  4  3  2  1 ] 
-Ordenacion por Insercion
-[  1  2  3  4  5  6  7  8  9 10 ] 
-Ordenacion Shell
-[  1  2  3  4  5  6  7  8  9 10 ] 
-
-
-TEST 2
-Inicializacion Ascendente
-[  1  2  3  4  5  6  7  8  9 10 ] 
-Ordenacion por Insercion
-[  1  2  3  4  5  6  7  8  9 10 ] 
-Ordenacion Shell
-[  1  2  3  4  5  6  7  8  9 10 ] 
 
 
 VECTOR EN ORDEN ASCENDENTE
