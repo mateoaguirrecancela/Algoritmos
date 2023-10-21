@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <math.h>
+#include <stdbool.h>
 
 double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     struct timeval t;
@@ -15,6 +16,16 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
         return 0.0;
     }
     return (t.tv_usec + t.tv_sec * 1000000.0);
+}
+
+void tabla(int n, double to, bool promedio){
+    if(promedio){
+            printf("\t(*)%d\t\t%f\t%f\t%f\t%f\n",
+            n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+        }else{
+            printf("\t%d\t\t%f\t%f\t%f\t%f\n",
+            n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+        }
 }
 
 //Algoritmo de Ordenacion por Insercion
@@ -133,12 +144,15 @@ void test3(){
 
 //Test Tiempos Ejecucion
 void test_ord(){
-    int i, n=500;
-    double inicioo, inicios, finalo, finals, to, ts;
+    int i, j, k=1000, n=500;
+    double inicioo, inicios, finalo, finals, to, ts, t1;
+    bool promedio=false;
+
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
     printf("Ordenacion por Insercion\n");
     while (n <= 32000){
         int  v[n];
+        promedio=false;
         for (i = 0; i < n; i++){
             v[i]=i;
         }
@@ -147,9 +161,22 @@ void test_ord(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
-    
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                for (j = 0; j < n; j++){
+                    v[j]=j;
+                }
+                ord_ins(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+            
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
+        
         n = n * 2;
     }
 
@@ -157,6 +184,7 @@ void test_ord(){
     printf("\nOrdenacion Shell\n");
     while (n <= 32000){
         int  v[n];
+        promedio=false;
         for (i = 0; i < n; i++){
             v[i]=i;
         }
@@ -165,16 +193,30 @@ void test_ord(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                for (j = 0; j < n; j++){
+                    v[j]=j;
+                }
+                ord_shell(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+            
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
 
         n = n * 2;
     }
 }
 
 void test_des(){
-    int i,j,n=500;
-    double inicioo, inicios, finalo, finals, to, ts;
+    int i, j, s, k=1000, n=500;
+    double inicioo, inicios, finalo, finals, to, ts, t1;
+    bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
     printf("Ordenacion por Insercion\n");
@@ -190,9 +232,23 @@ void test_des(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
-    
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                s=n;
+                for (j = 0; j < n; j++){
+                    v[j]=s;
+                    s--;
+                }
+                ord_ins(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);    
         n = n * 2;
     }
 
@@ -210,16 +266,32 @@ void test_des(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                s=n;
+                for (j = 0; j < n; j++){
+                    v[j]=s;
+                    s--;
+                }
+                ord_shell(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
 
         n = n * 2;
     }
 }
 
 void test_alt(){
-    int n=500;
-    double inicioo, inicios, finalo, finals, to, ts;
+    int i, k=1000, n=500;
+    double inicioo, inicios, finalo, finals, to, ts, t1;
+    bool promedio=false;
     
     printf("\n\nVECTOR DESORDENADO\n");
     printf("Ordenacion por Insercion\n");
@@ -233,8 +305,19 @@ void test_alt(){
         finalo=microsegundos();
         to=finalo-inicioo;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                aleatorio(v,n);
+                ord_ins(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
     
         n = n * 2;
     }
@@ -251,8 +334,19 @@ void test_alt(){
         finals=microsegundos();
         ts=finals-inicios;
 
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                aleatorio(v,n);
+                ord_shell(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
 
         n = n * 2;
     }
