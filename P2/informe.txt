@@ -7,8 +7,8 @@ INTRODUCCIÓN:
 	Se generan arreglos que actúan como entrada para evaluar el rendimiento de estos algoritmos en diversas situaciones.
 
 OBJETIVO:
-        El objetivo principal de esta práctica es medir los tiempos de ejecución de los algoritmos de ordenación por inserción y ordenación shell
-        Se ponen a prueba los algoritmos en diferentes condiciones, como datos ordenados de manera ascendente, descendente y desordenados.
+        El objetivo principal de esta práctica es medir los tiempos de ejecución de los algoritmos de ordenación por inserción y ordenación shell.
+        Se ponen a prueba los algoritmos en diferentes condiciones, con datos ordenados de manera ascendente, descendente y desordenados.
         De esta manera podemos comparar sus tiempos en cada una de las condiciones para ver cual es más eficiente.
 
 TEST:
