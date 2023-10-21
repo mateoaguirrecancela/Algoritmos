@@ -160,9 +160,21 @@ void test_ord(){
         ord_ins(v, n);
         finalo=microsegundos();
         to=finalo-inicioo;
-
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                for (j = 0; j < n; j++){
+                    v[j]=j;
+                }
+                ord_ins(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
     
         n = n * 2;
     }
@@ -179,9 +191,21 @@ void test_ord(){
         ord_shell(v, n);
         finals=microsegundos();
         ts=finals-inicios;
-
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                for (j = 0; j < n; j++){
+                    v[j]=j;
+                }
+                ord_shell(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
 
         n = n * 2;
     }
@@ -196,6 +220,7 @@ void test_des(){
     printf("Ordenacion por Insercion\n");
     while (n <= 32000){
         int  v[n];
+        promedio=false;
         j=n;
         for (i = 0; i < n; i++){
             v[i]=j;
@@ -230,6 +255,7 @@ void test_des(){
     printf("\nOrdenacion Shell\n");
     while (n <= 32000){
         int  v[n];
+        promedio=false;
         j=n;
         for (i = 0; i < n; i++){
             v[i]=j;
@@ -239,9 +265,23 @@ void test_des(){
         ord_shell(v, n);
         finals=microsegundos();
         ts=finals-inicios;
-
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                s=n;
+                for (j = 0; j < n; j++){
+                    v[j]=s;
+                    s--;
+                }
+                ord_shell(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
 
         n = n * 2;
     }
@@ -256,6 +296,7 @@ void test_alt(){
     printf("Ordenacion por Insercion\n");
     while (n <= 32000){
         int  v[n];
+        promedio=false;
 
         aleatorio(v, n);
         
@@ -263,9 +304,19 @@ void test_alt(){
         ord_ins(v, n);
         finalo=microsegundos();
         to=finalo-inicioo;
-
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                aleatorio(v,n);
+                ord_ins(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
     
         n = n * 2;
     }
@@ -274,6 +325,7 @@ void test_alt(){
     printf("\nOrdenacion Shell\n");
     while (n <= 32000){
         int  v[n];
+        promedio=false;
 
         aleatorio(v, n);
                 
@@ -281,9 +333,19 @@ void test_alt(){
         ord_shell(v, n);
         finals=microsegundos();
         ts=finals-inicios;
-
-        printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-        n, ts, ts / (pow(n, 0.8)), ts / n, ts / (pow(n, 1.2)));
+        if(to < 500){
+            promedio=true;
+            inicioo = microsegundos();
+            for (i = 0; i < k; ++i) {
+                aleatorio(v,n);
+                ord_shell(v,n);
+            }
+            finalo = microsegundos();
+            t1 = finalo -inicioo;
+        
+            to = t1/k;
+        }
+        tabla(n, to, promedio);
 
         n = n * 2;
     }
