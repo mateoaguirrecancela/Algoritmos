@@ -91,7 +91,8 @@ TABLAS DE TIEMPOS:
                 32000       6202.000000        0.000048        0.000006        0.000001
 
 CONCLUSIONES:
-        En resumen, esta práctica permitió analizar y comparar el rendimiento de los algoritmos de ordenación por inserción y ordenación shell en diversas condiciones. Los resultados destacan la importancia de elegir el algoritmo de ordenación adecuado según la naturaleza de los datos y las características del hardware y el entorno.
-        Los resultados y conclusiones de esta práctica proporcionan información valiosa para la selección de algoritmos de ordenación en aplicaciones del mundo real, considerando las restricciones de tiempo y recursos de la máquina utilizada.
-
+        En resumen, esta práctica permitió analizar y comparar el rendimiento de los algoritmos de ordenación por inserción y ordenación shell en diversas condiciones. 
+        Los resultados destacan la importancia de elegir el algoritmo de ordenación adecuado según la naturaleza de los datos y las características del hardware y el entorno.
+        Analizando los resultados de las tablas, se puede observar que con vectores en orden ascendente es notablemente mejor el algoritmo de ordenacion por inserccion. 
+        En cambio en las otras dos situaciones, con un vector en orden descendente y un vector aleatorio, es mucho mas eficiente el algoritmo de ordenacion shell.
 
