@@ -12,6 +12,9 @@ OBJETIVO:
         De esta manera podemos comparar sus tiempos en cada una de las condiciones para ver cual es más eficiente.
 
 TEST:
+        Primero se realizará un test para evaluar el funcionamiento de cada uno de los algoritmos em las tres situaciones (vector en orden ascendente, vector en orden descendente y vector desordenado)
+        Después se realizará un test para analizar los tiempos de ejecución de cada algoritmo en cada situación. Para ello usamos vectores de un tamaño que va desde 500 hasta 32000 siguiendo una progresión geométrica de razón dos y utilizando unas cotas en función a la complejidad de este.
+
 
 ESPECIFIACIONES DE LA MÁQUINA:
 	·Modelo: HUAWEI MateBook 14 AMD 2021
