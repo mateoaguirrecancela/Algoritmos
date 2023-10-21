@@ -35,6 +35,22 @@ void tabla(int n, double t, bool promedio, int a){
             printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
                 n, t, t / (pow(n, 1.8)), t / (pow(n, 2)), t / (pow(n, 2.2)));
         }
+    }else if(a==3){
+        if (promedio){
+            printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+                n, t, t / (pow(n, 1)), t / (n*log(n)), t / (pow(n, 1.5)));
+        }else{
+            printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+                n, t, t / (pow(n, 1)), t / (n*log(n)), t / (pow(n, 1.5)));
+        }
+    }else if(a==4){
+        if (promedio){
+            printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+                n, t, t / n, t / (pow(n, 1.2)), t / (pow(n, 1.4)));
+        }else{
+            printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+                n, t, t / n, t / (pow(n, 1.2)), t / (pow(n, 1.4)));
+        }
     }
 }
 
@@ -201,7 +217,7 @@ void test_ords(){
     bool promedio = false;
 
     printf("\nOrdenacion Shell\n");
-    printf("\t    n\t\t   t(n)\t     t(n)/n^0.8\t\t t(n)/n\t     t(n)/n^1.2\n");
+    printf("\t    n\t\t   t(n)\t\t t(n)/n\t  t(n)/n*log(n)\t     t(n)/n^1.5\n");
     while (n <= 32000){
         int v[n];
         promedio = false;
@@ -227,7 +243,7 @@ void test_ords(){
             t1 = final - inicio;
             t = t1 / k;
         }
-        tabla(n, t, promedio, 1);
+        tabla(n, t, promedio, 3);
 
         n = n * 2;
     }
@@ -281,7 +297,7 @@ void test_dess(){
     bool promedio = false;
     
     printf("\nOrdenacion Shell\n");
-    printf("\t    n\t\t   t(n)\t     t(n)/n^1.8\t       t(n)/n^2\t     t(n)/n^2.2\n");
+    printf("\t    n\t\t   t(n)\t\t t(n)/n\t  t(n)/n*log(n)\t     t(n)/n^1.5\n");
     while (n <= 32000){
         int v[n];
         promedio = false;
@@ -311,7 +327,7 @@ void test_dess(){
             t1 = final - inicio;
             t = t1 / k;
         }
-        tabla(n, t, promedio, 2);
+        tabla(n, t, promedio, 3);
         n = n * 2;
     }
 }
@@ -357,7 +373,7 @@ void test_alts(){
     bool promedio = false;
 
     printf("\nOrdenacion Shell\n");
-    printf("\t    n\t\t   t(n)\t     t(n)/n^1.8\t       t(n)/n^2\t     t(n)/n^2.2\n");
+    printf("\t    n\t\t   t(n)\t\t t(n)/n\t     t(n)/n^1.2\t     t(n)/n^1.4\n");
     while (n <= 32000){
         int v[n];
         promedio = false;
@@ -380,7 +396,7 @@ void test_alts(){
             t1 = final - inicio;
             t = t1 / k;
         }
-        tabla(n, t, promedio, 2);
+        tabla(n, t, promedio, 4);
 
         n = n * 2;
     }
