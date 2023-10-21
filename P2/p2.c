@@ -18,13 +18,13 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-void tabla(int n, double to, bool promedio){
+void tabla(int n, double t, bool promedio){
     if(promedio){
-            printf("\t(*)%d\t\t%f\t%f\t%f\t%f\n",
-            n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+            printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+            n,t,t/ (pow(n, 0.8)),t/ n,t/ (pow(n, 1.2)));
         }else{
-            printf("\t%d\t\t%f\t%f\t%f\t%f\n",
-            n, to, to / (pow(n, 0.8)), to / n, to / (pow(n, 1.2)));
+            printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+            n,t,t/ (pow(n, 0.8)),t/ n,t/ (pow(n, 1.2)));
         }
 }
 
@@ -145,7 +145,7 @@ void test3(){
 //Test Tiempos Ejecucion
 void test_ord(){
     int i, j, k=1000, n=500;
-    double inicioo, inicios, finalo, finals, to, ts, t1;
+    double inicio, final, t, t1;
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
@@ -156,25 +156,25 @@ void test_ord(){
         for (i = 0; i < n; i++){
             v[i]=i;
         }
-        inicioo=microsegundos();
+        inicio=microsegundos();
         ord_ins(v, n);
-        finalo=microsegundos();
-        to=finalo-inicioo;
-        if(to < 500){
+        final=microsegundos();
+        t=final-inicio;
+        if(t < 500){
             promedio=true;
-            inicioo = microsegundos();
+            inicio = microsegundos();
             for (i = 0; i < k; ++i) {
                 for (j = 0; j < n; j++){
                     v[j]=j;
                 }
                 ord_ins(v,n);
             }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
+            final = microsegundos();
+            t1 = final -inicio;
         
-            to = t1/k;
+            t= t1/k;
         }
-        tabla(n, to, promedio);
+        tabla(n,t, promedio);
     
         n = n * 2;
     }
@@ -187,25 +187,25 @@ void test_ord(){
         for (i = 0; i < n; i++){
             v[i]=i;
         }
-        inicios=microsegundos();
+        inicio=microsegundos();
         ord_shell(v, n);
-        finals=microsegundos();
-        ts=finals-inicios;
-        if(to < 500){
+        final=microsegundos();
+        t=final-inicio;
+        if(t < 500){
             promedio=true;
-            inicioo = microsegundos();
+            inicio = microsegundos();
             for (i = 0; i < k; ++i) {
                 for (j = 0; j < n; j++){
                     v[j]=j;
                 }
                 ord_shell(v,n);
             }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
+            final = microsegundos();
+            t1 = final -inicio;
         
-            to = t1/k;
+           t= t1/k;
         }
-        tabla(n, to, promedio);
+        tabla(n,t, promedio);
 
         n = n * 2;
     }
@@ -213,7 +213,7 @@ void test_ord(){
 
 void test_des(){
     int i, j, s, k=1000, n=500;
-    double inicioo, inicios, finalo, finals, to, ts, t1;
+    double inicio, final,t, t1;
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
@@ -226,14 +226,14 @@ void test_des(){
             v[i]=j;
             j--;
         }
-        inicioo=microsegundos();
+        inicio=microsegundos();
         ord_ins(v, n);
-        finalo=microsegundos();
-        to=finalo-inicioo;
+        final=microsegundos();
+       t=final-inicio;
 
-        if(to < 500){
+        if(t < 500){
             promedio=true;
-            inicioo = microsegundos();
+            inicio = microsegundos();
             for (i = 0; i < k; ++i) {
                 s=n;
                 for (j = 0; j < n; j++){
@@ -242,12 +242,12 @@ void test_des(){
                 }
                 ord_ins(v,n);
             }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
+            final = microsegundos();
+            t1 = final -inicio;
         
-            to = t1/k;
+           t= t1/k;
         }
-        tabla(n, to, promedio);    
+        tabla(n,t, promedio);    
         n = n * 2;
     }
 
@@ -261,13 +261,13 @@ void test_des(){
             v[i]=j;
             j--;
         }
-        inicios=microsegundos();
+        inicio=microsegundos();
         ord_shell(v, n);
-        finals=microsegundos();
-        ts=finals-inicios;
-        if(to < 500){
+        final=microsegundos();
+        t=final-inicio;
+        if(t < 500){
             promedio=true;
-            inicioo = microsegundos();
+            inicio = microsegundos();
             for (i = 0; i < k; ++i) {
                 s=n;
                 for (j = 0; j < n; j++){
@@ -276,12 +276,12 @@ void test_des(){
                 }
                 ord_shell(v,n);
             }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
+            final = microsegundos();
+            t1 = final -inicio;
         
-            to = t1/k;
+           t= t1/k;
         }
-        tabla(n, to, promedio);
+        tabla(n,t, promedio);
 
         n = n * 2;
     }
@@ -289,7 +289,7 @@ void test_des(){
 
 void test_alt(){
     int i, k=1000, n=500;
-    double inicioo, inicios, finalo, finals, to, ts, t1;
+    double inicio, final,t, t1;
     bool promedio=false;
     
     printf("\n\nVECTOR DESORDENADO\n");
@@ -300,23 +300,23 @@ void test_alt(){
 
         aleatorio(v, n);
         
-        inicioo=microsegundos();
+        inicio=microsegundos();
         ord_ins(v, n);
-        finalo=microsegundos();
-        to=finalo-inicioo;
-        if(to < 500){
+        final=microsegundos();
+       t=final-inicio;
+        if(t < 500){
             promedio=true;
-            inicioo = microsegundos();
+            inicio = microsegundos();
             for (i = 0; i < k; ++i) {
                 aleatorio(v,n);
                 ord_ins(v,n);
             }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
+            final = microsegundos();
+            t1 = final -inicio;
         
-            to = t1/k;
+           t= t1/k;
         }
-        tabla(n, to, promedio);
+        tabla(n,t, promedio);
     
         n = n * 2;
     }
@@ -329,23 +329,23 @@ void test_alt(){
 
         aleatorio(v, n);
                 
-        inicios=microsegundos();
+        inicio=microsegundos();
         ord_shell(v, n);
-        finals=microsegundos();
-        ts=finals-inicios;
-        if(to < 500){
+        final=microsegundos();
+        t=final-inicio;
+        if(t < 500){
             promedio=true;
-            inicioo = microsegundos();
+            inicio = microsegundos();
             for (i = 0; i < k; ++i) {
                 aleatorio(v,n);
                 ord_shell(v,n);
             }
-            finalo = microsegundos();
-            t1 = finalo -inicioo;
+            final = microsegundos();
+            t1 = final -inicio;
         
-            to = t1/k;
+           t= t1/k;
         }
-        tabla(n, to, promedio);
+        tabla(n,t, promedio);
 
         n = n * 2;
     }
