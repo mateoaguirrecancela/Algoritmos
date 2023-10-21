@@ -4,7 +4,7 @@ AUTORES:
  
 INTRODUCCIÓN:
         Esta práctica se enfoca en analizar la complejidad computacional de dos algoritmos de ordenación: ordenación por inserción y ordenación shell. 
-	Se generan arreglos que actúan como entrada para evaluar el rendimiento de estos algoritmos en diversas situaciones.
+	Se generan vectores que actúan como entrada para evaluar el rendimiento de estos algoritmos en diversas situaciones.
 
 OBJETIVO:
         El objetivo principal de esta práctica es medir los tiempos de ejecución de los algoritmos de ordenación por inserción y ordenación shell.
