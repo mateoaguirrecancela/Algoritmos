@@ -26,3 +26,10 @@ TABLAS DE TIEMPOS:
 
           
 CONCLUSIONES:
+
+
+#Poner debajo de cada tabla la cota subestimada, la cota real y la cota sobrestimada
+#Poner a que constante se aproxima la cota real
+#Indicar que significa el asterisco en las tablas de tiempo (arreglo de tiempos pequeños)
+#Ampliar conclusión (Las dos primeras lineas de la conclusión de la P2 no son conclusiones) & Si hay varios algoritmos comparar ese mismo algoritmo en todas sus situaciones
+#INDICAR las cotas anómalas
