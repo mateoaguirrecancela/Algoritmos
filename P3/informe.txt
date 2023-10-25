@@ -1,0 +1,28 @@
+AUTORES:
+ - Martín Del Río Álvarez          martin.delrio.alvarez@udc.es
+ - Mateo Aguirre Cancela           mateo.aguirre@udc.es
+ 
+INTRODUCCIÓN:
+
+
+OBJETIVO:
+
+
+TEST:
+
+
+
+ESPECIFIACIONES DE LA MÁQUINA:
+	·Modelo: HUAWEI MateBook 14 AMD 2021
+	·Procesador: AMD Ryzen 5 5500U
+	·Memoria RAM: 8gb
+	·Sistema operativo: Linux Ubuntu 22.04.3 LTS
+	·Kernel: 6.2.0-33-generic
+
+ACLARACIONES:
+	Todas las unidades de tiempo estan medidas en microsegundos.
+
+TABLAS DE TIEMPOS:
+
+          
+CONCLUSIONES:
