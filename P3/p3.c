@@ -73,7 +73,7 @@ int quitarMenor(pmonticulo m) {
 }
 
 void ordenarPorMonticulos(int v[], int n){
-    pmonticulo m;
+    pmonticulo m=NULL;  //inicializar el monticulo
     int i;
     crearMonticulo(v, n, m);
 
@@ -136,13 +136,13 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-void tabla(int n, double t, float cota, bool promedio){
+void tabla(int n, double t, float sub, float cota, float sobre, bool promedio){
     if (promedio){
         printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
-        n, t, t / (cota-0.2), t / cota, t / (cota+0.2));
+        n, t, t / sub, t / cota, t / sobre);
     }else{
         printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
-        n, t, t / (cota-0.2), t / cota, t / (cota+0.2));
+        n, t, t / sub, t / cota, t / sobre);
     }
 }
 
@@ -153,8 +153,7 @@ void testOperaciones(){
     int v[n];
     aleatorio(v, n);
     //int n = sizeof(v) / sizeof(v[0]);     calcular el numero de elementos del array
-    pmonticulo m;
-    int menor;
+    pmonticulo m=NULL;
 
     crearMonticulo(v, n, m);
 
@@ -173,9 +172,8 @@ void testOperaciones(){
 //Orden Ascendente
 void testAscendente(){
     int n=500, k=1000, v[32000];
-    double inicio, final, t, ta;
+    double inicio, final, t;
     bool promedio=false;
-    pmonticulo m;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
     
@@ -205,7 +203,7 @@ void testAscendente(){
 			t = t - ((final-inicio)/k);
 		}
 
-        //tabla(n, t, cota, promedio);
+        tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
 
         n=n*2;
     }
@@ -245,7 +243,7 @@ void testDescendente(){
 			t = t - ((final-inicio)/k);
 		}
 
-        //tabla(n, t, cota, promedio);
+        tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
 
         n=n*2;
     }
@@ -285,7 +283,7 @@ void testAleatorio(){
 			t = t - ((final-inicio)/k);
 		}
 
-        //tabla(n, t, cota, promedio);
+        tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
 
         n=n*2;
     }
