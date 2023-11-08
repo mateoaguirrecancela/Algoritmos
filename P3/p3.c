@@ -82,6 +82,24 @@ void ordenarPorMonticulos(int v[], int n){
     }
 }
 
+void mostrarMonticulo(pmonticulo m){
+    int i;
+    printf("[");
+    for (i = 0; i <= m->ultimo; i++) {
+        printf("%3d ", m->vector[i]);
+    }
+    printf("]\n");
+}
+
+void mostrarVector(int v[], int n){
+    int i;
+    printf("[");
+    for(i = 0; i < n; i++){
+        printf("%3d ", v[i]);
+    }
+    printf("]\n");
+}
+
 
 
 void inicializar_semilla(){
@@ -128,6 +146,7 @@ void tabla(int n, double t, float cota, bool promedio){
     }
 }
 
+
 //TEST
 void testOperaciones(){
     int n=10;
@@ -135,47 +154,35 @@ void testOperaciones(){
     aleatorio(v, n);
     //int n = sizeof(v) / sizeof(v[0]);     calcular el numero de elementos del array
     pmonticulo m;
-    int i, menor;
+    int menor;
 
     crearMonticulo(v, n, m);
 
     printf("Crear Monticulo:\n");
-    printf("[");
-    for (i = 0; i <= m->ultimo; i++) {
-        printf("%3d ", m->vector[i]);
-    }
-    printf("]\n");
+    mostrarMonticulo(m);
 
-    printf("Quit Menor:\n");
-    printf("[");
-    while (m->ultimo >= 0) {
-        menor = quitarMenor(m);
-        printf("%3d ", menor);
-    }
-    printf("]\n");
+    printf("Quitar Menor:\n");
+    quitarMenor(m);
+    mostrarMonticulo(m);
 
     ordenarPorMonticulos(v, n);
     printf("Ordenar por Monticulos:\n");
-    printf("[");
-    for (i = 0; i <= n; i++) {
-        printf("%3d ", v[i]);
-    }
-    printf("]\n");
+    mostrarVector(v, n);
 }
-
 
 //Orden Ascendente
 void testAscendente(){
     int n=500, k=1000, v[32000];
-    double inicio, final, t;
+    double inicio, final, t, ta;
     bool promedio=false;
+    pmonticulo m;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
     
     while(n<=32000){
         promedio=false;
         ascendente(v, n);
-
+        
         inicio=microsegundos();
         ordenarPorMonticulos(v, n);
         final=microsegundos();
@@ -290,6 +297,9 @@ int main(){
 
     inicializar_semilla();
     testOperaciones();
+    testAscendente();
+    testDescendente();
+    testAleatorio();
 
     return 0;
 }
