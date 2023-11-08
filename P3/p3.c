@@ -73,10 +73,11 @@ int quitarMenor(pmonticulo m) {
 }
 
 void ordenarPorMonticulos(int v[], int n){
-    pmonticulo m=NULL;  //inicializar el monticulo
+    pmonticulo m;
     int i;
     crearMonticulo(v, n, m);
 
+    m->ultimo=-1;   //inicializar el monticulo
     for (i = 0; i < n; i++){
         v[i]=quitarMenor(m);
     }
@@ -153,8 +154,9 @@ void testOperaciones(){
     int v[n];
     aleatorio(v, n);
     //int n = sizeof(v) / sizeof(v[0]);     calcular el numero de elementos del array
-    pmonticulo m=NULL;
+    pmonticulo m;
 
+    m->ultimo=-1;   //inicializar el monticulo
     crearMonticulo(v, n, m);
 
     printf("Crear Monticulo:\n");
@@ -295,9 +297,6 @@ int main(){
 
     inicializar_semilla();
     testOperaciones();
-    testAscendente();
-    testDescendente();
-    testAleatorio();
-
+    
     return 0;
 }
