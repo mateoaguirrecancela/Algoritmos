@@ -73,11 +73,10 @@ int quitarMenor(pmonticulo m) {
 }
 
 void ordenarPorMonticulos(int v[], int n){
-    pmonticulo m;
+    pmonticulo m = malloc(sizeof(struct monticulo));    //inicializar monticulo
     int i;
     crearMonticulo(v, n, m);
 
-    m->ultimo=-1;   //inicializar el monticulo
     for (i = 0; i < n; i++){
         v[i]=quitarMenor(m);
     }
@@ -117,8 +116,8 @@ void aleatorio(int v[], int n){
 
 void descendente(int v[], int n) {
     int i;
-    for (i=n-1; i >=0; i--){
-        v[n-1-i] = i;
+    for (i=0; i < n; i++){
+        v[i] = n-i;
     }
 }
 
@@ -154,9 +153,8 @@ void testOperaciones(){
     int v[n];
     aleatorio(v, n);
     //int n = sizeof(v) / sizeof(v[0]);     calcular el numero de elementos del array
-    pmonticulo m;
+    pmonticulo m = malloc(sizeof(struct monticulo));    //inicializar monticulo
 
-    m->ultimo=-1;   //inicializar el monticulo
     crearMonticulo(v, n, m);
 
     printf("Crear Monticulo:\n");
@@ -178,7 +176,8 @@ void testAscendente(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
-    
+    printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+
     while(n<=32000){
         promedio=false;
         ascendente(v, n);
@@ -218,6 +217,7 @@ void testDescendente(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
+    printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
     
     while(n<=32000){
         promedio=false;
@@ -258,6 +258,7 @@ void testAleatorio(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ALEATORIO\n");
+    printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
     
     while(n<=32000){
         promedio=false;
@@ -297,6 +298,9 @@ int main(){
 
     inicializar_semilla();
     testOperaciones();
+    testAscendente();
+    testDescendente();
+    testAleatorio();
     
     return 0;
 }
