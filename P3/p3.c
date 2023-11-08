@@ -57,16 +57,6 @@ void crearMonticulo(int v[], int n, pmonticulo m){
     }
 }
 
-void ordenarPorMonticulos(int v[], int n){
-    pmonticulo m;
-    int i;
-    crearMonticulo(v, n, m);
-
-    for (i = 0; i < n; i++){
-        v[i]=quitarMenor(m);
-    }
-}
-
 int quitarMenor(pmonticulo m) {
     if (m->ultimo == -1) {
         // Montículo vacío
@@ -82,6 +72,43 @@ int quitarMenor(pmonticulo m) {
     return menor;
 }
 
+void ordenarPorMonticulos(int v[], int n){
+    pmonticulo m;
+    int i;
+    crearMonticulo(v, n, m);
+
+    for (i = 0; i < n; i++){
+        v[i]=quitarMenor(m);
+    }
+}
+
+
+
+void inicializar_semilla(){
+    srand(time(NULL));
+    /*se establece la semilla de una nueva serie de enteros pseudo-aleatorios*/
+}
+
+void aleatorio(int v[], int n){
+    int i, m = 2 * n + 1;
+    for (i = 0; i < n; i++){
+        v[i] = (rand() % m) - n;
+    } /* se generan números pseudoaleatorio entre -n y +n */
+}
+
+void descendente(int v[], int n) {
+    int i;
+    for (i=n-1; i >=0; i--){
+        v[n-1-i] = i;
+    }
+}
+
+void ascendente(int v[], int n) {
+    int i;
+    for (i=0; i < n; i++){
+        v[i] = i;
+    }
+}
 
 double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     struct timeval t;
@@ -91,22 +118,33 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
+void tabla(int n, double t, float cota, bool promedio){
+    if (promedio){
+        printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+        n, t, t / (cota-0.2), t / cota, t / (cota+0.2));
+    }else{
+        printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+        n, t, t / (cota-0.2), t / cota, t / (cota+0.2));
+    }
+}
+
 //TEST
 void testOperaciones(){
-    int datos[] = {5, 2, 9, 1, 5, 6};
-    int n = sizeof(datos) / sizeof(datos[0]);    //calcular el numero de elementos del array
+    int n=10;
+    int v[n];
+    aleatorio(v, n);
+    //int n = sizeof(v) / sizeof(v[0]);     calcular el numero de elementos del array
     pmonticulo m;
     int i, menor;
 
-    crearMonticulo(datos, n, m);
+    crearMonticulo(v, n, m);
 
     printf("Crear Monticulo:\n");
     printf("[");
     for (i = 0; i <= m->ultimo; i++) {
         printf("%3d ", m->vector[i]);
     }
-    printf("]");
-    printf("\n");
+    printf("]\n");
 
     printf("Quit Menor:\n");
     printf("[");
@@ -114,19 +152,144 @@ void testOperaciones(){
         menor = quitarMenor(m);
         printf("%3d ", menor);
     }
-    printf("]");
-    printf("\n");
+    printf("]\n");
 
-    return 0;
+    ordenarPorMonticulos(v, n);
+    printf("Ordenar por Monticulos:\n");
+    printf("[");
+    for (i = 0; i <= n; i++) {
+        printf("%3d ", v[i]);
+    }
+    printf("]\n");
 }
 
 
 //Orden Ascendente
+void testAscendente(){
+    int n=500, k=1000, v[32000];
+    double inicio, final, t;
+    bool promedio=false;
 
+    printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
+    
+    while(n<=32000){
+        promedio=false;
+        ascendente(v, n);
 
+        inicio=microsegundos();
+        ordenarPorMonticulos(v, n);
+        final=microsegundos();
+        t=final-inicio;
+
+        if(t<500){
+			promedio = true;
+			inicio=microsegundos();
+			for(int i=0;i<k;i++){
+				ascendente(v, n);
+				ordenarPorMonticulos(v,n);
+			}
+			final=microsegundos();
+			t=(final-inicio)/k;
+			inicio=microsegundos();
+			for(int i=0;i<k;i++){
+				ascendente(v, n);
+			}
+			final=microsegundos();
+			t = t - ((final-inicio)/k);
+		}
+
+        //tabla(n, t, cota, promedio);
+
+        n=n*2;
+    }
+}
 
 //Orden Descendente
+void testDescendente(){
+    int n=500, k=1000, v[32000];
+    double inicio, final, t;
+    bool promedio=false;
 
+    printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
+    
+    while(n<=32000){
+        promedio=false;
+        descendente(v, n);
 
+        inicio=microsegundos();
+        ordenarPorMonticulos(v, n);
+        final=microsegundos();
+        t=final-inicio;
+
+        if(t<500){
+			promedio = true;
+			inicio=microsegundos();
+			for(int i=0;i<k;i++){
+				descendente(v, n);
+				ordenarPorMonticulos(v,n);
+			}
+			final=microsegundos();
+			t=(final-inicio)/k;
+			inicio=microsegundos();
+			for(int i=0;i<k;i++){
+				descendente(v, n);
+			}
+			final=microsegundos();
+			t = t - ((final-inicio)/k);
+		}
+
+        //tabla(n, t, cota, promedio);
+
+        n=n*2;
+    }
+}
 
 //Aleatorio
+void testAleatorio(){
+    int n=500, k=1000, v[32000];
+    double inicio, final, t;
+    bool promedio=false;
+
+    printf("\n\nVECTOR EN ORDEN ALEATORIO\n");
+    
+    while(n<=32000){
+        promedio=false;
+        aleatorio(v, n);
+
+        inicio=microsegundos();
+        ordenarPorMonticulos(v, n);
+        final=microsegundos();
+        t=final-inicio;
+
+        if(t<500){
+			promedio = true;
+			inicio=microsegundos();
+			for(int i=0;i<k;i++){
+				aleatorio(v, n);
+				ordenarPorMonticulos(v,n);
+			}
+			final=microsegundos();
+			t=(final-inicio)/k;
+			inicio=microsegundos();
+			for(int i=0;i<k;i++){
+				aleatorio(v, n);
+			}
+			final=microsegundos();
+			t = t - ((final-inicio)/k);
+		}
+
+        //tabla(n, t, cota, promedio);
+
+        n=n*2;
+    }
+}
+
+
+
+int main(){
+
+    inicializar_semilla();
+    testOperaciones();
+
+    return 0;
+}
