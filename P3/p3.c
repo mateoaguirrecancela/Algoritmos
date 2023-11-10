@@ -45,21 +45,20 @@ void hundir(pmonticulo m, int i) {
     }
 }
 
+
 void crearMonticulo(int v[], int n, pmonticulo m){
-    m->ultimo = n - 1;
-
-    for (int i = (n - 1) / 2; i >= 0; i--) {
-        hundir(m, i);
+    int i;
+    for(i = 0; i <= n; i++){
+        m->vector[i]=v[i];
     }
-
-    for (int i = 0; i < n; i++) {
-        m->vector[i] = v[i];
+    m->ultimo = n-1;
+    for(i = (m->ultimo)/2; i >= 0; i--){
+        hundir(m,i);
     }
 }
 
 int quitarMenor(pmonticulo m) {
-    if (m->ultimo == -1) {
-        // Montículo vacío
+    if (m->ultimo < 0) {    //vacio
         return -1;
     }
 
@@ -136,7 +135,7 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-void tabla(int n, double t, float sub, float cota, float sobre, bool promedio){
+void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
     if (promedio){
         printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
         n, t, t / sub, t / cota, t / sobre);
@@ -171,14 +170,14 @@ void testOperaciones(){
 
 //Orden Ascendente
 void testAscendente(){
-    int n=500, k=1000, v[32000];
+    int n=500, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
     printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
 
-    while(n<=32000){
+    while(n<=128000){
         promedio=false;
         ascendente(v, n);
         
@@ -212,14 +211,14 @@ void testAscendente(){
 
 //Orden Descendente
 void testDescendente(){
-    int n=500, k=1000, v[32000];
+    int n=500, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
     printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
     
-    while(n<=32000){
+    while(n<=128000){
         promedio=false;
         descendente(v, n);
 
@@ -253,14 +252,14 @@ void testDescendente(){
 
 //Aleatorio
 void testAleatorio(){
-    int n=500, k=1000, v[32000];
+    int n=500, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ALEATORIO\n");
     printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
     
-    while(n<=32000){
+    while(n<=128000){
         promedio=false;
         aleatorio(v, n);
 
