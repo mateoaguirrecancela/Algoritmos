@@ -137,10 +137,10 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
 
 void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
     if (promedio){
-        printf("(*)\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+        printf("(*)\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
         n, t, t / sub, t / cota, t / sobre);
     }else{
-        printf("\t%5d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+        printf("\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
         n, t, t / sub, t / cota, t / sobre);
     }
 }
@@ -175,7 +175,7 @@ void testAscendente(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
-    printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+    printf("\t     n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
 
     while(n<=128000){
         promedio=false;
@@ -216,7 +216,7 @@ void testDescendente(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
-    printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+    printf("\t     n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
     
     while(n<=128000){
         promedio=false;
@@ -257,7 +257,7 @@ void testAleatorio(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ALEATORIO\n");
-    printf("\t    n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+    printf("\t     n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
     
     while(n<=128000){
         promedio=false;
