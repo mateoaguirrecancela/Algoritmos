@@ -3,14 +3,16 @@ AUTORES:
  - Mateo Aguirre Cancela           mateo.aguirre@udc.es
  
 INTRODUCCIÓN:
-
-
-OBJETIVO:
-
+	En esta práctica se llevarán a cabo diversas operaciones sobre montículos, con el objetivo de estudiar la complejidad de la operación "crear_monticulo" y demostrar que su ejecución tiene un tiempo O(n).
+	Se implementará además el algoritmo de ordenación por montículos, y se procederá a calcular empíricamente su complejidad en tres contextos distintos: cuando se le suministra un vector ya ordenado de manera ascendente, cuando se le proporciona un vector ya ordenado de manera descendente, y cuando se le pasa un vector generado aleatoriamente.
 
 TEST:
-
-
+	Creamos un monticulo con el siguiente vector:
+	[ -9  -5   0  -4   0   7   7   7   2   4 ]
+	Eliminamos el elemento menor, quedando el siguiente monticulo:
+	[ -5  -4   0   2   0   7   7   7   4 ]
+	Comprobamos el funcionamiento de ordenacion por monticulos:
+	[ -9  -5  -4   0   0   2   4   7   7   7 ]
 
 ESPECIFIACIONES DE LA MÁQUINA:
 	·Modelo: HUAWEI MateBook 14 AMD 2021
@@ -21,10 +23,86 @@ ESPECIFIACIONES DE LA MÁQUINA:
 
 ACLARACIONES:
 	Todas las unidades de tiempo estan medidas en microsegundos.
+	El valor de n sigue una progresión geométrica de razón dos.
+	Los símbolos (*) colocados a la izquierda de ciertos tiempos indican que el tiempo de ejecución para ese valor de n es inferior a 500 microsegundos. Esto implica que el algoritmo se repitió 1000 (contante K) veces y posteriormente se calculó una media.
 
 TABLAS DE TIEMPOS:
 
-          
+VECTOR EN ORDEN ASCENDENTE
+            n              t(n)        t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4
+(*)       500         50.022000        0.164478        0.016098        0.008329
+(*)      1000        211.806000        0.368077        0.030662        0.013364
+(*)      2000        178.839000        0.164254        0.011764        0.004276
+(*)      4000        469.463000        0.227880        0.014151        0.004253
+         8000       1288.000000        0.330425        0.017914        0.004422
+        16000       1837.000000        0.249068        0.011860        0.002390
+        32000       3632.000000        0.260260        0.010941        0.001790
+        64000       8286.000000        0.313805        0.011699        0.001548
+        128000     19606.000000        0.392424        0.013025        0.001388
+
+-COTAS:
+	cota subestimada:  n^0.92
+	cota ajustada:     n*log(n)
+	cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+	-Se puede observar una ligera anomalía para n=1000 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ???.
+	-Al ??? ocurre con la sobrestimada, pues ???.
+	-Y la cota ajustada se aproxima 0.01
+
+VECTOR EN ORDEN DESCENDENTE
+            n              t(n)        t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4
+(*)       500         36.758000        0.120865        0.011830        0.006121
+(*)      1000         97.409000        0.169277        0.014101        0.006146
+(*)      2000        204.933000        0.188219        0.013481        0.004900
+(*)      4000        428.571000        0.208031        0.012918        0.003883
+         8000        958.000000        0.245767        0.013325        0.003289
+        16000       1913.000000        0.259373        0.012351        0.002489
+        32000       4262.000000        0.305405        0.012839        0.002101
+        64000       8540.000000        0.323424        0.012058        0.001595
+        128000     18809.000000        0.376472        0.012496        0.001331
+
+-COTAS:
+	cota subestimada:  n^0.92
+	cota ajustada:     n*log(n)
+	cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+	-Se puede observar una ligera anomalía para n=1000, para n=2000 y para n=8000 (#), las cuales no se han podido impedir que se desvíen ligeramente del valor aproximado de la cota ajustada.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-Y la cota ajustada se aproxima 0.0128
+
+VECTOR EN ORDEN ALEATORIO
+            n              t(n)        t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4
+(*)       500         52.139000        0.171439        0.016779        0.008682
+(*)      1000        141.556000        0.245996        0.020492        0.008932
+(*)      2000        251.006000        0.230535        0.016512        0.006001
+         4000        550.000000        0.266973        0.016578        0.004983
+         8000       1161.000000        0.297844        0.016148        0.003986
+        16000       5033.000000        0.682396        0.032495        0.006547
+        32000      16114.000000        1.154690        0.048543        0.007943
+        64000      19969.000000        0.756259        0.028194        0.003730
+        128000     29936.000000        0.599185        0.019888        0.002119
+
+-COTAS:
+	cota subestimada:  n^0.92
+	cota ajustada:     n*log(n)
+	cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+	-Se puede observar una ligera anomalía para n=4000 (#), la cual no se ha podido impedir, que se desvía ligeramente del valor aproximado de la cota ajustada.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues decrecen ???.
+	-Y la cota ajustada se aproxima 0.01
+
 CONCLUSIONES:
 
 
