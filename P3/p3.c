@@ -150,7 +150,9 @@ void comprobarComplejidad() {
     int i, n=1000, k=1000, v[256000];
     double inicio, final, t;
     bool promedio=false;
-    pmonticulo m = malloc(sizeof(struct monticulo));    //inicializar monticulo
+    pmonticulo m = NULL;                    //inicializar el puntero a NULL
+    m = malloc(sizeof(struct monticulo));   //asignar memoria
+
 
     printf("\nTabla para demostrar la complejidad de crear monticulo O(n):\n");
     printf("\t     n\t\t   t(n)\t     t(n)/n^0.9\t\t t(n)/n\t     t(n)/n^1.2\n");
@@ -181,10 +183,11 @@ void comprobarComplejidad() {
 
 //TEST
 void testOperaciones(){
-    int n=10;
+    int i, n=10;
     int v[n];
     aleatorio(v, n);
-    pmonticulo m = malloc(sizeof(struct monticulo));    //inicializar monticulo
+    pmonticulo m = NULL;                    //inicializar el puntero a NULL
+    m = malloc(sizeof(struct monticulo));   //asignar memoria
 
     crearMonticulo(v, n, m);
 
@@ -192,8 +195,10 @@ void testOperaciones(){
     mostrarMonticulo(m);
 
     printf("Quitar Menor:\n");
-    quitarMenor(m);
-    mostrarMonticulo(m);
+    for(i=0;i<n;i++){
+        quitarMenor(m);
+        mostrarMonticulo(m);
+    }
 
     ordenarPorMonticulos(v, n);
     printf("Ordenar por Monticulos:\n");
@@ -207,7 +212,7 @@ void testAscendente(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
-    printf("\t     n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+    printf("\t     n\t\t   t(n)\t    t(n)/n^0.92   t(n)/n*log(n)\t     t(n)/n^1.4\n");
 
     while(n<=128000){
         promedio=false;
@@ -248,7 +253,7 @@ void testDescendente(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
-    printf("\t     n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+    printf("\t     n\t\t   t(n)\t    t(n)/n^0.92   t(n)/n*log(n)\t     t(n)/n^1.4\n");
     
     while(n<=128000){
         promedio=false;
@@ -263,14 +268,14 @@ void testDescendente(){
 			promedio = true;
 			inicio=microsegundos();
 			for(i=0;i<k;i++){
-				ascendente(v, n);
+				descendente(v, n);
 				ordenarPorMonticulos(v,n);
 			}
 			final=microsegundos();
 			t=final-inicio;
 			inicio=microsegundos();
 			for(i=0;i<k;i++){
-				ascendente(v, n);
+				descendente(v, n);
 			}
 			final=microsegundos();
 			t = (t - (final-inicio))/k;
@@ -289,7 +294,7 @@ void testAleatorio(){
     bool promedio=false;
 
     printf("\n\nVECTOR EN ORDEN ALEATORIO\n");
-    printf("\t     n\t\t   t(n)\t       t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4\n");
+    printf("\t     n\t\t   t(n)\t    t(n)/n^0.92   t(n)/n*log(n)\t     t(n)/n^1.4\n");
     
     while(n<=128000){
         promedio=false;
@@ -304,14 +309,14 @@ void testAleatorio(){
 			promedio = true;
 			inicio=microsegundos();
 			for(i=0;i<k;i++){
-				ascendente(v, n);
+				aleatorio(v, n);
 				ordenarPorMonticulos(v,n);
 			}
 			final=microsegundos();
 			t=final-inicio;
 			inicio=microsegundos();
 			for(i=0;i<k;i++){
-				ascendente(v, n);
+				aleatorio(v, n);
 			}
 			final=microsegundos();
 			t = (t - (final-inicio))/k;
@@ -330,9 +335,9 @@ int main(){
     inicializar_semilla();
     testOperaciones();
     comprobarComplejidad();
-    //testAscendente();
-    //testDescendente();
-    //testAleatorio();
+    testAscendente();
+    testDescendente();
+    testAleatorio();
     
     return 0;
 }
