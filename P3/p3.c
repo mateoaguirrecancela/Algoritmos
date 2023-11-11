@@ -48,7 +48,7 @@ void hundir(pmonticulo m, int i) {
 
 void crearMonticulo(int v[], int n, pmonticulo m){
     int i;
-    for(i = 0; i <= n; i++){
+    for(i = 0; i < n; i++){
         m->vector[i]=v[i];
     }
     m->ultimo = n-1;
@@ -145,13 +145,45 @@ void tabla(int n, double t, double sub, double cota, double sobre, bool promedio
     }
 }
 
+//COMPLEJIDAD
+void comprobarComplejidad() {
+    int i, n=1000, k=1000, v[256000];
+    double inicio, final, t;
+    bool promedio=false;
+    pmonticulo m = malloc(sizeof(struct monticulo));    //inicializar monticulo
+
+    printf("\nTabla para demostrar la complejidad de crear monticulo O(n):\n");
+    printf("\t     n\t\t   t(n)\t     t(n)/n^0.9\t\t t(n)/n\t     t(n)/n^1.2\n");
+    while (n <= 256000) {
+        promedio=false;
+        ascendente(v,n);
+
+        inicio = microsegundos();
+        crearMonticulo(v,n,m);
+        final = microsegundos();
+        t = final - inicio;
+
+        if(t < 500){
+            promedio=true;
+            inicio = microsegundos();
+            for (i = 0; i < k; i++) {
+                crearMonticulo(v,n,m);
+            }
+            final = microsegundos();
+            t = (final - inicio)/k;
+        }
+
+        tabla(n, t, pow(n,0.9), n, (pow(n,1.2)), promedio);
+
+        n=n*2;
+    }
+}
 
 //TEST
 void testOperaciones(){
     int n=10;
     int v[n];
     aleatorio(v, n);
-    //int n = sizeof(v) / sizeof(v[0]);     calcular el numero de elementos del array
     pmonticulo m = malloc(sizeof(struct monticulo));    //inicializar monticulo
 
     crearMonticulo(v, n, m);
@@ -170,7 +202,7 @@ void testOperaciones(){
 
 //Orden Ascendente
 void testAscendente(){
-    int n=500, k=1000, v[128000];
+    int i, n=500, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
 
@@ -189,18 +221,18 @@ void testAscendente(){
         if(t<500){
 			promedio = true;
 			inicio=microsegundos();
-			for(int i=0;i<k;i++){
+			for(i=0;i<k;i++){
 				ascendente(v, n);
 				ordenarPorMonticulos(v,n);
 			}
 			final=microsegundos();
-			t=(final-inicio)/k;
+			t=final-inicio;
 			inicio=microsegundos();
-			for(int i=0;i<k;i++){
+			for(i=0;i<k;i++){
 				ascendente(v, n);
 			}
 			final=microsegundos();
-			t = t - ((final-inicio)/k);
+			t = (t - (final-inicio))/k;
 		}
 
         tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
@@ -211,7 +243,7 @@ void testAscendente(){
 
 //Orden Descendente
 void testDescendente(){
-    int n=500, k=1000, v[128000];
+    int i, n=500, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
 
@@ -230,18 +262,18 @@ void testDescendente(){
         if(t<500){
 			promedio = true;
 			inicio=microsegundos();
-			for(int i=0;i<k;i++){
-				descendente(v, n);
+			for(i=0;i<k;i++){
+				ascendente(v, n);
 				ordenarPorMonticulos(v,n);
 			}
 			final=microsegundos();
-			t=(final-inicio)/k;
+			t=final-inicio;
 			inicio=microsegundos();
-			for(int i=0;i<k;i++){
-				descendente(v, n);
+			for(i=0;i<k;i++){
+				ascendente(v, n);
 			}
 			final=microsegundos();
-			t = t - ((final-inicio)/k);
+			t = (t - (final-inicio))/k;
 		}
 
         tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
@@ -252,7 +284,7 @@ void testDescendente(){
 
 //Aleatorio
 void testAleatorio(){
-    int n=500, k=1000, v[128000];
+    int i, n=500, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
 
@@ -271,18 +303,18 @@ void testAleatorio(){
         if(t<500){
 			promedio = true;
 			inicio=microsegundos();
-			for(int i=0;i<k;i++){
-				aleatorio(v, n);
+			for(i=0;i<k;i++){
+				ascendente(v, n);
 				ordenarPorMonticulos(v,n);
 			}
 			final=microsegundos();
-			t=(final-inicio)/k;
+			t=final-inicio;
 			inicio=microsegundos();
-			for(int i=0;i<k;i++){
-				aleatorio(v, n);
+			for(i=0;i<k;i++){
+				ascendente(v, n);
 			}
 			final=microsegundos();
-			t = t - ((final-inicio)/k);
+			t = (t - (final-inicio))/k;
 		}
 
         tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
@@ -297,9 +329,10 @@ int main(){
 
     inicializar_semilla();
     testOperaciones();
-    testAscendente();
-    testDescendente();
-    testAleatorio();
+    comprobarComplejidad();
+    //testAscendente();
+    //testDescendente();
+    //testAleatorio();
     
     return 0;
 }
