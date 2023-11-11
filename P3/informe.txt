@@ -46,8 +46,7 @@ Tabla para demostrar la complejidad de crear monticulo O(n):
 (*)      16000        78.425000        0.012905        0.004902        0.000707
 (*)      32000       155.634000        0.013724        0.004864        0.000611
 (*)      64000       308.391000        0.014573        0.004819        0.000527
-        128000       746.000000        0.018891        0.005828        0.000555
-        256000      1446.000000        0.019622        0.005648        0.000468
+        128000       746.000000        0.018891        0.005828 (#)    0.000555
 
 -COTAS:
     cota subestimada:  n^0.9
@@ -55,17 +54,16 @@ Tabla para demostrar la complejidad de crear monticulo O(n):
     cota sobrestimada: n^1.2
 
 (#) ANOMALIAS:
-    -Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
+    -Se puede observar una ligera anomalía para n=128000 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
 
 -OBSERVACIONES:
     -Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
     -Al contrario ocurre con la sobrestimada, pues estos decrecen.
     -La cota ajustada se aproxima 0.0048
 
-
 VECTOR EN ORDEN ASCENDENTE
              n             t(n)     t(n)/n^0.92   t(n)/n*log(n)      t(n)/n^1.4
-(*)        500        36.039000        0.118501        0.011598        0.006001
+(*)        500        36.039000        0.118501        0.011598 (#)    0.006001
 (*)       1000        95.351000        0.165701        0.013803        0.006016
 (*)       2000       223.087000        0.204893        0.014675        0.005334
 (*)       4000       485.562000        0.235695        0.014636        0.004399
@@ -106,7 +104,7 @@ VECTOR EN ORDEN DESCENDENTE
 	cota sobrestimada: n^1.4
 
 (#) ANOMALIAS:
-	-Se puede observar una ligera anomalía para n=1000, para n=2000 y para n=8000 (#), las cuales no se han podido impedir que se desvíen ligeramente del valor aproximado de la cota ajustada.
+	-No se observan anomalías.
 
 -OBSERVACIONES:
 	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
@@ -115,7 +113,7 @@ VECTOR EN ORDEN DESCENDENTE
 
 VECTOR EN ORDEN ALEATORIO
              n             t(n)     t(n)/n^0.92   t(n)/n*log(n)      t(n)/n^1.4
-(*)        500        62.641000        0.205971        0.020159        0.010430
+(*)        500        62.641000        0.205971        0.020159 (#)    0.010430
 (*)       1000       126.928000        0.220576        0.018375        0.008009
 (*)       2000       276.674000        0.254109        0.018200        0.006615
           4000       650.000000        0.315514        0.019592        0.005889
@@ -131,7 +129,7 @@ VECTOR EN ORDEN ALEATORIO
 	cota sobrestimada: n^1.4
 
 (#) ANOMALIAS:
-	-Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido impedir, que se desvía ligeramente del valor aproximado de la cota ajustada.
+	-Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
 
 -OBSERVACIONES:
 	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
@@ -141,4 +139,4 @@ VECTOR EN ORDEN ALEATORIO
 CONCLUSIONES:
     -Analizando la tabla de tiempos para demostar la complejidad de la operación crear montículo vemos que se obtiene un buen valor aproxiamado para la cota ajustada (n) con lo que podemos afirmar que dicha operación tiene un complejidad lineal O(n).
     -Podemos también observar que el algoritmo de ordenación por montículos para los 3 casos (vector ascendente, vector descendente y vector aleatorio) tiene una complejidad de orden O(n*log(n)).
-    -Otra conclusión a resaltar es que el vector que más rápido se ordena es el vector descendente, después el ascendente y el que más tarda es el generado aleatoriamente, además por notable diferencia respecto a los vectores ascendentes y descendentes.
+    -Otra conclusión a resaltar es que los vectores que más rápido se ordena son el vector descendente y el ascendente, y el que más tarda es el generado aleatoriamente, además por notable diferencia respecto a los vectores ascendentes y descendentes.
