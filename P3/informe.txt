@@ -33,7 +33,7 @@ ESPECIFIACIONES DE LA MÁQUINA:
 ACLARACIONES:
 	Todas las unidades de tiempo estan medidas en microsegundos.
 	El valor de n sigue una progresión geométrica de razón dos.
-	Los símbolos (*) colocados a la izquierda de ciertos tiempos indican que el tiempo de ejecución para ese valor de n es inferior a 500 microsegundos. Esto implica que el algoritmo se repitió 1000 (contante K) veces y posteriormente se calculó una media.
+	Los símbolos (*) colocados a la izquierda de ciertos tiempos indican que el tiempo de ejecución para ese valor de n es inferior a 500 microsegundos. Esto implica que el algoritmo se repitió 1000 (contante k) veces y posteriormente se calculó una media.
 
 TABLAS DE TIEMPOS:
 
@@ -54,7 +54,7 @@ Tabla para demostrar la complejidad de crear monticulo O(n):
     cota sobrestimada: n^1.2
 
 (#) ANOMALIAS:
-    -Se puede observar una ligera anomalía para n=128000 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
+    -Se puede observar una ligera anomalía para n=128000 (#), la cual no se ha podido lograr que se acerque al valor aproximado de la cota ajustada.
 
 -OBSERVACIONES:
     -Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
@@ -79,7 +79,7 @@ VECTOR EN ORDEN ASCENDENTE
 	cota sobrestimada: n^1.4
 
 (#) ANOMALIAS:
-	-Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
+	-Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido lograr que se acerque al valor aproximado de la cota ajustada.
 
 -OBSERVACIONES:
 	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
@@ -139,4 +139,4 @@ VECTOR EN ORDEN ALEATORIO
 CONCLUSIONES:
     -Analizando la tabla de tiempos para demostar la complejidad de la operación crear montículo vemos que se obtiene un buen valor aproxiamado para la cota ajustada (n) con lo que podemos afirmar que dicha operación tiene un complejidad lineal O(n).
     -Podemos también observar que el algoritmo de ordenación por montículos para los 3 casos (vector ascendente, vector descendente y vector aleatorio) tiene una complejidad de orden O(n*log(n)).
-    -Otra conclusión a resaltar es que los vectores que más rápido se ordena son el vector descendente y el ascendente, y el que más tarda es el generado aleatoriamente, además por notable diferencia respecto a los vectores ascendentes y descendentes.
+    -Otra conclusión a resaltar es que los vectores que más rápido se ordenan son el vector descendente y el ascendente, y el que más tarda es el generado aleatoriamente, siendo muy notable la diferencia respecto a los vectores ascendentes y descendentes. En cambio, los tiempos de estos dos últimos son bastante similares.

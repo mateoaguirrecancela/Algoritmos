@@ -147,7 +147,7 @@ void tabla(int n, double t, double sub, double cota, double sobre, bool promedio
 
 //COMPLEJIDAD
 void comprobarComplejidad() {
-    int i, n=1000, k=1000, v[256000];
+    int i, n=1000, k=1000, v[128000];
     double inicio, final, t;
     bool promedio=false;
     pmonticulo m = NULL;                    //inicializar el puntero a NULL
@@ -155,7 +155,7 @@ void comprobarComplejidad() {
 
     printf("\nTabla para demostrar la complejidad de crear monticulo O(n):\n");
     printf("\t     n\t\t   t(n)\t     t(n)/n^0.9\t\t t(n)/n\t     t(n)/n^1.2\n");
-    while (n <= 256000) {
+    while (n <= 128000) {
         promedio=false;
         ascendente(v,n);
 
