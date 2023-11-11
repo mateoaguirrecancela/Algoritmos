@@ -3,14 +3,16 @@ AUTORES:
  - Mateo Aguirre Cancela           mateo.aguirre@udc.es
  
 INTRODUCCIÓN:
-
-
-OBJETIVO:
-
+	En esta práctica se llevarán a cabo diversas operaciones sobre montículos, con el objetivo de estudiar la complejidad de la operación "crear_monticulo" y demostrar que su ejecución tiene un tiempo O(n).
+	Se implementará además el algoritmo de ordenación por montículos, y se procederá a calcular empíricamente su complejidad en tres contextos distintos: cuando se le suministra un vector ya ordenado de manera ascendente, cuando se le proporciona un vector ya ordenado de manera descendente, y cuando se le pasa un vector generado aleatoriamente.
 
 TEST:
-
-
+	Creamos un monticulo con el siguiente vector:
+	[ -9  -5   0  -4   0   7   7   7   2   4 ]
+	Eliminamos el elemento menor, quedando el siguiente monticulo:
+	[ -5  -4   0   2   0   7   7   7   4 ]
+	Comprobamos el funcionamiento de ordenacion por monticulos:
+	[ -9  -5  -4   0   0   2   4   7   7   7 ]
 
 ESPECIFIACIONES DE LA MÁQUINA:
 	·Modelo: HUAWEI MateBook 14 AMD 2021
@@ -21,29 +23,10 @@ ESPECIFIACIONES DE LA MÁQUINA:
 
 ACLARACIONES:
 	Todas las unidades de tiempo estan medidas en microsegundos.
+	El valor de n sigue una progresión geométrica de razón dos.
+	Los símbolos (*) colocados a la izquierda de ciertos tiempos indican que el tiempo de ejecución para ese valor de n es inferior a 500 microsegundos. Esto implica que el algoritmo se repitió 1000 (contante K) veces y posteriormente se calculó una media.
 
 TABLAS DE TIEMPOS:
-
-          
-CONCLUSIONES:
-
-
-#Poner debajo de cada tabla la cota subestimada, la cota real y la cota sobrestimada
-#Poner a que constante se aproxima la cota real
-#Indicar que significa el asterisco en las tablas de tiempo (arreglo de tiempos pequeños)
-#Ampliar conclusión (Las dos primeras lineas de la conclusión de la P2 no son conclusiones) & Si hay varios algoritmos comparar ese mismo algoritmo en todas sus situaciones
-#INDICAR las cotas anómalas
-
-
-
-
-Crear Monticulo:
-[-10  -6  -7  -5  -3  -6   4  -4   6  10 ]
-Quitar Menor:
-[ -7  -6  -6  -5  -3  10   4  -4   6 ]
-Ordenar por Monticulos:
-[-10  -7  -6  -6  -5  -4  -3   4   6  10 ]
-
 
 VECTOR EN ORDEN ASCENDENTE
              n             t(n)        t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4
@@ -57,6 +40,18 @@ VECTOR EN ORDEN ASCENDENTE
          64000      9798.000000        0.371067        0.013834        0.001830
         128000     21790.000000        0.436138        0.014476        0.001542
 
+-COTAS:
+	cota subestimada:  n^0.92
+	cota ajustada:     n*log(n)
+	cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+	-Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido impedir que se desvíe ligeramente del valor aproximado de la cota ajustada.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-La cota ajustada se aproxima ???
 
 VECTOR EN ORDEN DESCENDENTE
              n             t(n)        t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4
@@ -70,6 +65,18 @@ VECTOR EN ORDEN DESCENDENTE
          64000     10078.000000        0.381671        0.014229        0.001882
         128000     20895.000000        0.418224        0.013881        0.001479
 
+-COTAS:
+	cota subestimada:  n^0.92
+	cota ajustada:     n*log(n)
+	cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+	-Se puede observar una ligera anomalía para n=1000, para n=2000 y para n=8000 (#), las cuales no se han podido impedir que se desvíen ligeramente del valor aproximado de la cota ajustada.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-La cota ajustada se aproxima ???
 
 VECTOR EN ORDEN ALEATORIO
              n             t(n)        t(n)/n^0.92     t(n)/n*log(n)   t(n)/n^1.4
@@ -82,3 +89,25 @@ VECTOR EN ORDEN ALEATORIO
          32000      6004.000000        0.430232        0.018087        0.002960
          64000     12813.000000        0.485250        0.018091        0.002393
         128000     27350.000000        0.547424        0.018170        0.001936
+
+-COTAS:
+	cota subestimada:  n^0.92
+	cota ajustada:     n*log(n)
+	cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+	-Se puede observar una ligera anomalía para n=500 (#), la cual no se ha podido impedir, que se desvía ligeramente del valor aproximado de la cota ajustada.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-Y la cota ajustada se aproxima 0.018
+
+CONCLUSIONES:
+
+
+#Poner debajo de cada tabla la cota subestimada, la cota real y la cota sobrestimada
+#Poner a que constante se aproxima la cota real
+#Indicar que significa el asterisco en las tablas de tiempo (arreglo de tiempos pequeños)
+#Ampliar conclusión (Las dos primeras lineas de la conclusión de la P2 no son conclusiones) & Si hay varios algoritmos comparar ese mismo algoritmo en todas sus situaciones
+#INDICAR las cotas anómalas
