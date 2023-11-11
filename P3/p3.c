@@ -153,7 +153,6 @@ void comprobarComplejidad() {
     pmonticulo m = NULL;                    //inicializar el puntero a NULL
     m = malloc(sizeof(struct monticulo));   //asignar memoria
 
-
     printf("\nTabla para demostrar la complejidad de crear monticulo O(n):\n");
     printf("\t     n\t\t   t(n)\t     t(n)/n^0.9\t\t t(n)/n\t     t(n)/n^1.2\n");
     while (n <= 256000) {
@@ -179,6 +178,8 @@ void comprobarComplejidad() {
 
         n=n*2;
     }
+
+    free(m);
 }
 
 //TEST
@@ -203,6 +204,8 @@ void testOperaciones(){
     ordenarPorMonticulos(v, n);
     printf("Ordenar por Monticulos:\n");
     mostrarVector(v, n);
+
+    free(m);
 }
 
 //Orden Ascendente
