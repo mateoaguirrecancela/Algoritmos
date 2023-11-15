@@ -1,0 +1,65 @@
+AUTORES:
+ - Martín Del Río Álvarez          martin.delrio.alvarez@udc.es
+ - Mateo Aguirre Cancela           mateo.aguirre@udc.es
+ 
+INTRODUCCIÓN:
+
+TEST:
+
+ESPECIFIACIONES DE LA MÁQUINA:
+	·Modelo: HUAWEI MateBook 14 AMD 2021
+	·Procesador: AMD Ryzen 5 5500U
+	·Memoria RAM: 8gb
+	·Sistema operativo: Linux Ubuntu 22.04.3 LTS
+	·Kernel: 6.2.0-33-generic
+
+ACLARACIONES:
+	Todas las unidades de tiempo estan medidas en microsegundos.
+	El valor de n sigue una progresión geométrica de razón dos.
+	Los símbolos (*) colocados a la izquierda de ciertos tiempos indican que el tiempo de ejecución para ese valor de n es inferior a 500 microsegundos. Esto implica que el algoritmo se repitió 1000 (contante k) veces y posteriormente se calculó una media.
+
+TABLAS DE TIEMPOS:
+
+-COTAS:
+
+(#) ANOMALIAS:
+
+-OBSERVACIONES:
+    -Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+    -Al contrario ocurre con la sobrestimada, pues estos decrecen.
+    -La cota ajustada se aproxima 0.0048
+
+VECTOR EN ORDEN ASCENDENTE
+
+-COTAS:
+
+(#) ANOMALIAS:
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-La cota ajustada se aproxima 0.014
+
+VECTOR EN ORDEN DESCENDENTE
+
+-COTAS:
+
+(#) ANOMALIAS:
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-La cota ajustada se aproxima 0.014
+
+VECTOR EN ORDEN ALEATORIO
+
+-COTAS:
+
+(#) ANOMALIAS:
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-Y la cota ajustada se aproxima 0.018
+
+CONCLUSIONES:
