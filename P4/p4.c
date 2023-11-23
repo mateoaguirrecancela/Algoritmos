@@ -25,21 +25,7 @@ matriz crearMatriz(int n)
             return NULL;
     return aux;
 }
-//Inicializacion pseudoaleatoria [1..TAM_MAX] de un grafo completo
-//no dirigido con n nodos, representado por su matriz de adayencia
-void iniMatriz(matriz m, int n)
-{
-    int i, j;
-    for (i = 0; i < n; i++)
-        for (j = i + 1; j < n; j++)
-            m[i][j] = rand() % TAM_MAX + 1;
-    for (i = 0; i < n; i++)
-        for (j = 0; j <= i; j++)
-            if (i == j)
-                m[i][j] = 0;
-            else
-                m[i][j] = m[j][i];
-}
+
 void liberarMatriz(matriz m, int n)
 {
     int i;
@@ -54,13 +40,13 @@ void imprimirMatriz(matriz m, int n){
     {
         for (j = 0; j < n; j++)
         {
-            printf("%5d", m[i][j]);
+            printf("%3d", m[i][j]);
         }
         printf("\n");
     }
 }
 
-void introducirValores(matriz m, int **p, int n){
+void introducirValores(matriz m, int n, int p[n][n]){
     int i, j;
     for(i=0; i<n; i++){
         for(j=0; j<n; j++){
@@ -81,9 +67,7 @@ void dijkstra(matriz grafo, matriz distancias, int tam)
             distancias[n][i] = grafo[n][i];
         }
         noVisitados[n] = 0;
-        /*
-        ...
-        */
+        
         for (count = 0; count < tam - 2; count++) {
             min = TAM_MAX;
 
@@ -106,12 +90,59 @@ void dijkstra(matriz grafo, matriz distancias, int tam)
     free(noVisitados);
 }
 
+double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
+    struct timeval t;
+    if (gettimeofday(&t, NULL) < 0){
+        return 0.0;
+    }
+    return (t.tv_usec + t.tv_sec * 1000000.0);
+}
+
+void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
+    if (promedio){
+        printf("(*)\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+        n, t, t / sub, t / cota, t / sobre);
+    }else{
+        printf("\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+        n, t, t / sub, t / cota, t / sobre);
+    }
+}
+
+void inicializar_semilla()
+{
+    srand(time(NULL));
+    /*se establece la semilla de una nueva serie de enteros pseudo-aleatorios*/
+}
+
+//Inicializacion pseudoaleatoria [1..TAM_MAX] de un grafo completo
+//no dirigido con n nodos, representado por su matriz de adayencia
+void iniMatriz(matriz m, int n)
+{
+    int i, j;
+    for (i = 0; i < n; i++){
+        for (j = i + 1; j < n; j++){
+            m[i][j] = rand() % TAM_MAX + 1;
+        }
+    }
+    for (i = 0; i < n; i++){
+        for (j = 0; j <= i; j++){
+            if (i == j){
+                m[i][j] = 0;
+            }else{
+                m[i][j] = m[j][i];
+            }
+        }
+    }
+}
+
+
 void test(){
-    int n=5;
-    int p[][5]={{0,1,8,4,7},{1,0,2,6,5},{8,2,0,9,5},{4,6,9,0,3},{7,5,5,3,0}};
-    matriz m, d;
+    int n=5, n1=4;
+    int p[5][5]={{0,1,8,4,7},{1,0,2,6,5},{8,2,0,9,5},{4,6,9,0,3},{7,5,5,3,0}};
+    int p1[4][4]={{0,1,4,7},{1,0,2,8},{4,2,0,3},{7,8,3,0}};
+    matriz m, d, m1, d1;
     m=crearMatriz(n);
-    introducirValores(m, p, n);
+    introducirValores(m, n, p);
     d=crearMatriz(n);
 
     imprimirMatriz(m, n);
@@ -122,39 +153,67 @@ void test(){
     imprimirMatriz(d, n);
     printf("\n");
 
+    m1=crearMatriz(n1);
+    introducirValores(m1, n1, p1);
+    d1=crearMatriz(n1);
+
+    imprimirMatriz(m1, n1);
+    printf("\n");
+    dijkstra(m1, d1, n1);
+    imprimirMatriz(m1, n1);
+    printf("\n");
+    imprimirMatriz(d1, n1);
+    printf("\n");
+
     liberarMatriz(m, n);
+    liberarMatriz(m1, n1);
 }
 
+void testComplejidad(){
+    int i, n=15, k=1000;
+    double inicio, final, t;
+    bool promedio=false;
+    matriz m, d;                    //inicializar el puntero a NULL
+    
 
-void inicializar_semilla()
-{
-    srand(time(NULL));
-    /*se establece la semilla de una nueva serie de enteros pseudo-aleatorios*/
+    printf("\nTabla para demostrar la complejidad de dijkstra O(n):\n");
+    printf("\t     n\t\t   t(n)\t     t(n)/n^2.8\t       t(n)/n^3\t     t(n)/n^3.2\n");
+    while (n <= TAM_MAX) {
+        promedio=false;
+        m = crearMatriz(n);              //asignar memoria
+        d = crearMatriz(n);              //asignar memoria
+        iniMatriz(m,n);
+
+        inicio = microsegundos();
+        dijkstra(m,d,n);
+        final = microsegundos();
+        t = final - inicio;
+
+        if(t < 500){
+            promedio=true;
+
+            inicio = microsegundos();
+            for (i = 0; i < k; i++) {
+                iniMatriz(m,n);
+                dijkstra(m,d,n);
+            }
+            final = microsegundos();
+            t=final-inicio;
+			inicio=microsegundos();
+			for(i=0;i<k;i++){
+				iniMatriz(m, n);
+			}
+			final=microsegundos();
+			t = (t - (final-inicio))/k;
+        }
+
+        tabla(n, t, pow(n,2.8), pow(n,3), pow(n,3.2), promedio);
+
+        liberarMatriz(m, n);
+        n=n*2;
+    }
+        
 }
-
-void aleatorio(int v[], int n)
-{
-    int i, m = 2 * n + 1;
-    for (i = 0; i < n; i++)
-    {
-        v[i] = (rand() % m) - n;
-    } /* se generan números pseudoaleatorio entre -n y +n */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -162,6 +221,7 @@ int main(){
     inicializar_semilla();
 
     test();
+    testComplejidad();
 
     return 0;
 }
