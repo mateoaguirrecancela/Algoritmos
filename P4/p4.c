@@ -14,8 +14,7 @@
 
 typedef int **matriz;
 
-matriz crearMatriz(int n)
-{
+matriz crearMatriz(int n){
     int i;
     matriz aux;
     if ((aux = malloc(n * sizeof(int *))) == NULL)
@@ -26,8 +25,7 @@ matriz crearMatriz(int n)
     return aux;
 }
 
-void liberarMatriz(matriz m, int n)
-{
+void liberarMatriz(matriz m, int n){
     int i;
     for (i = 0; i < n; i++)
         free(m[i]);
@@ -36,10 +34,8 @@ void liberarMatriz(matriz m, int n)
 
 void imprimirMatriz(matriz m, int n){
     int i, j;
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < n; j++)
-        {
+    for (i = 0; i < n; i++){
+        for (j = 0; j < n; j++){
             printf("%3d", m[i][j]);
         }
         printf("\n");
@@ -48,31 +44,28 @@ void imprimirMatriz(matriz m, int n){
 
 void introducirValores(matriz m, int n, int p[n][n]){
     int i, j;
-    for(i=0; i<n; i++){
-        for(j=0; j<n; j++){
-            m[i][j]=p[i][j];
+    for (i = 0; i < n; i++){
+        for (j = 0; j < n; j++){
+            m[i][j] = p[i][j];
         }
     }
 }
 
-void dijkstra(matriz grafo, matriz distancias, int tam)
-{
+void dijkstra(matriz grafo, matriz distancias, int tam){
     int n, i, j, min, count, v = 0;
     int *noVisitados = malloc(tam * sizeof(int));
-    for (n = 0; n < tam; n++)
-    {
-        for (i = 0; i < tam; i++)
-        {
+    for (n = 0; n < tam; n++){
+        for (i = 0; i < tam; i++){
             noVisitados[i] = 1;
             distancias[n][i] = grafo[n][i];
         }
         noVisitados[n] = 0;
-        
-        for (count = 0; count < tam - 2; count++) {
+
+        for (count = 0; count < tam - 2; count++){
             min = TAM_MAX;
 
-            for (i = 0; i < tam; i++) {
-                if (noVisitados[i] && distancias[n][i] < min) {
+            for (i = 0; i < tam; i++){
+                if (noVisitados[i] && distancias[n][i] < min){
                     min = distancias[n][i];
                     v = i;
                 }
@@ -80,8 +73,8 @@ void dijkstra(matriz grafo, matriz distancias, int tam)
 
             noVisitados[v] = 0;
 
-            for (j = 0; j < tam; j++) {
-                if (noVisitados[j] && distancias[n][j] > distancias[n][v] + grafo[v][j]) {
+            for (j = 0; j < tam; j++){
+                if (noVisitados[j] && distancias[n][j] > distancias[n][v] + grafo[v][j]){
                     distancias[n][j] = distancias[n][v] + grafo[v][j];
                 }
             }
@@ -101,23 +94,22 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
 void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
     if (promedio){
         printf("(*)\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
-        n, t, t / sub, t / cota, t / sobre);
-    }else{
+               n, t, t / sub, t / cota, t / sobre);
+    }
+    else{
         printf("\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
-        n, t, t / sub, t / cota, t / sobre);
+               n, t, t / sub, t / cota, t / sobre);
     }
 }
 
-void inicializar_semilla()
-{
+void inicializar_semilla(){
     srand(time(NULL));
     /*se establece la semilla de una nueva serie de enteros pseudo-aleatorios*/
 }
 
-//Inicializacion pseudoaleatoria [1..TAM_MAX] de un grafo completo
-//no dirigido con n nodos, representado por su matriz de adayencia
-void iniMatriz(matriz m, int n)
-{
+// Inicializacion pseudoaleatoria [1..TAM_MAX] de un grafo completo
+// no dirigido con n nodos, representado por su matriz de adayencia
+void iniMatriz(matriz m, int n){
     int i, j;
     for (i = 0; i < n; i++){
         for (j = i + 1; j < n; j++){
@@ -128,95 +120,87 @@ void iniMatriz(matriz m, int n)
         for (j = 0; j <= i; j++){
             if (i == j){
                 m[i][j] = 0;
-            }else{
+            }
+            else{
                 m[i][j] = m[j][i];
             }
         }
     }
 }
 
-
 void test(){
-    int n=5, n1=4;
-    int p[5][5]={{0,1,8,4,7},{1,0,2,6,5},{8,2,0,9,5},{4,6,9,0,3},{7,5,5,3,0}};
-    int p1[4][4]={{0,1,4,7},{1,0,2,8},{4,2,0,3},{7,8,3,0}};
+    int n = 5, n1 = 4;
+    int p[5][5] = {{0, 1, 8, 4, 7}, {1, 0, 2, 6, 5}, {8, 2, 0, 9, 5}, {4, 6, 9, 0, 3}, {7, 5, 5, 3, 0}};
+    int p1[4][4] = {{0, 1, 4, 7}, {1, 0, 2, 8}, {4, 2, 0, 3}, {7, 8, 3, 0}};
+
     matriz m, d, m1, d1;
-    m=crearMatriz(n);
+    m = crearMatriz(n);
     introducirValores(m, n, p);
-    d=crearMatriz(n);
+    d = crearMatriz(n);
 
     imprimirMatriz(m, n);
     printf("\n");
     dijkstra(m, d, n);
-    imprimirMatriz(m, n);
-    printf("\n");
     imprimirMatriz(d, n);
     printf("\n");
 
-    m1=crearMatriz(n1);
+    m1 = crearMatriz(n1);
     introducirValores(m1, n1, p1);
-    d1=crearMatriz(n1);
+    d1 = crearMatriz(n1);
 
     imprimirMatriz(m1, n1);
     printf("\n");
     dijkstra(m1, d1, n1);
-    imprimirMatriz(m1, n1);
-    printf("\n");
     imprimirMatriz(d1, n1);
     printf("\n");
 
     liberarMatriz(m, n);
     liberarMatriz(m1, n1);
+    liberarMatriz(d, n);
+    liberarMatriz(d1, n1);
 }
 
 void testComplejidad(){
-    int i, n=15, k=1000;
+    int i, n = 15, k = 1000;
     double inicio, final, t;
-    bool promedio=false;
-    matriz m, d;                    //inicializar el puntero a NULL
-    
-    m = crearMatriz(TAM_MAX);       //asignar memoria
-    d = crearMatriz(TAM_MAX);       //asignar memoria
+    bool promedio = false;
+    matriz m, d; // inicializar el puntero a NULL
+
+    m = crearMatriz(TAM_MAX); // asignar memoria
+    d = crearMatriz(TAM_MAX); // asignar memoria
 
     printf("\nTabla para demostrar la complejidad de dijkstra O(n):\n");
     printf("\t     n\t\t   t(n)\t    t(n)/n^2.55\t   t(n)/n^2.825\t     t(n)/n^3.1\n");
-    while (n <= TAM_MAX) {
-        promedio=false;
-        iniMatriz(m,n);
+    while (n <= TAM_MAX){
+        promedio = false;
+        iniMatriz(m, n);
 
         inicio = microsegundos();
-        dijkstra(m,d,n);
+        dijkstra(m, d, n);
         final = microsegundos();
         t = final - inicio;
-
-        if(t < 500){
-            promedio=true;
-
+        if (t < 500){
+            promedio = true;
             inicio = microsegundos();
-            for (i = 0; i < k; i++) {
-                iniMatriz(m,n);
-                dijkstra(m,d,n);
+            for (i = 0; i < k; i++){
+                iniMatriz(m, n);
+                dijkstra(m, d, n);
             }
             final = microsegundos();
-            t=final-inicio;
-			inicio=microsegundos();
-			for(i=0;i<k;i++){
-				iniMatriz(m, n);
-			}
-			final=microsegundos();
-			t = (t - (final-inicio))/k;
+            t = final - inicio;
+            inicio = microsegundos();
+            for (i = 0; i < k; i++){
+                iniMatriz(m, n);
+            }
+            final = microsegundos();
+            t = (t - (final - inicio)) / k;
         }
-
-        tabla(n, t, pow(n,2.55), pow(n,2.825), pow(n,3.1), promedio);
-
-        
-        n=n*2;
+        tabla(n, t, pow(n, 2.55), pow(n, 2.825), pow(n, 3.1), promedio);
+        n = n * 2;
     }
     liberarMatriz(m, TAM_MAX);
     liberarMatriz(d, TAM_MAX);
 }
-
-
 
 int main(){
     inicializar_semilla();
