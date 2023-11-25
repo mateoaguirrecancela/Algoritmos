@@ -64,9 +64,9 @@ Tabla para demostrar la complejidad de dijkstra O(n):
 -OBSERVACIONES:
 	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
 	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
-	-Y la cota ajustada se aproxima 0.017
+	-Y la cota ajustada se aproxima 0.0172
 
 CONCLUSIONES:
-    -Al analizar los datos de la tabla de tiempos para demostrar la complejidad del algoritmo de Dijkstra, se puede observar una tendencia consistente con una complejidad aproximada de O(n^2.825).
-    -A medida que el tamaño del grafo aumenta, el tiempo de ejecución se incrementa significativamente, lo que sugiere que el algoritmo de Dijkstra se vuelve más costoso computacionalmente a medida que se manejan grafos más grandes.
-    -A pesar de que la cota teórica para el algoritmo de Dijkstra es de O(n^3), el análisis de la complejidad empírica nos proporcionó una complejidad aproximada de O(n^2.825), pero que esta se aproxima a la complejidad teórica al incrementar el valor de n.
+    Al analizar los datos de la tabla de tiempos para demostrar la complejidad del algoritmo de Dijkstra, se puede observar una tendencia consistente con una complejidad aproximada de O(n^2.825).
+    A medida que el tamaño del grafo aumenta, el tiempo de ejecución se incrementa significativamente, lo que sugiere que el algoritmo de Dijkstra se vuelve más costoso computacionalmente a medida que se manejan grafos más grandes.
+    A pesar de que la cota teórica para el algoritmo de Dijkstra es de O(n^3), el análisis de la complejidad empírica nos proporcionó una complejidad aproximada de O(n^2.825), pero que esta se aproxima a la complejidad teórica al incrementar el valor de n.
