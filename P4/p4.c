@@ -175,13 +175,13 @@ void testComplejidad(){
     bool promedio=false;
     matriz m, d;                    //inicializar el puntero a NULL
     
+    m = crearMatriz(TAM_MAX);       //asignar memoria
+    d = crearMatriz(TAM_MAX);       //asignar memoria
 
     printf("\nTabla para demostrar la complejidad de dijkstra O(n):\n");
-    printf("\t     n\t\t   t(n)\t     t(n)/n^2.8\t       t(n)/n^3\t     t(n)/n^3.2\n");
+    printf("\t     n\t\t   t(n)\t    t(n)/n^2.55\t   t(n)/n^2.825\t     t(n)/n^3.1\n");
     while (n <= TAM_MAX) {
         promedio=false;
-        m = crearMatriz(n);              //asignar memoria
-        d = crearMatriz(n);              //asignar memoria
         iniMatriz(m,n);
 
         inicio = microsegundos();
@@ -207,12 +207,13 @@ void testComplejidad(){
 			t = (t - (final-inicio))/k;
         }
 
-        tabla(n, t, pow(n,2.8), pow(n,3), pow(n,3.2), promedio);
+        tabla(n, t, pow(n,2.55), pow(n,2.825), pow(n,3.1), promedio);
 
-        liberarMatriz(m, n);
+        
         n=n*2;
     }
-        
+    liberarMatriz(m, TAM_MAX);
+    liberarMatriz(d, TAM_MAX);
 }
 
 
