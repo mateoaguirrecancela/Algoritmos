@@ -6,8 +6,33 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <sys/time.h>
 #include <math.h>
+
+#define MAX 32000
+
+
+void imprimirVector(int n, int v[n]){
+    int i;
+    printf("[");
+    for (i = 0; i < n; i++){
+        printf("%3d", v[i]);
+    }
+    printf(" ]");
+}
+
+void inicializar_semilla(){
+    srand(time(NULL));
+    /*se establece la semilla de una nueva serie de enteros pseudo-aleatorios*/
+}
+
+void aleatorio(int v[], int n){
+    int i, m = 2 * n + 1;
+    for (i = 0; i < n; i++){
+        v[i] = (rand() % m) - n;
+    } /* se generan números pseudoaleatorio entre -n y +n */
+}
 
 double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     struct timeval t;
@@ -17,7 +42,55 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-// Algoritmo 1
+void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
+    if (promedio){
+        printf("(*)\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+               n, t, t / sub, t / cota, t / sobre);
+    }
+    else{
+        printf("\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
+               n, t, t / sub, t / cota, t / sobre);
+    }
+}
+
+void tiemposEj(int (*algoritmo) (int*,int), void (*inicializacion) (int*,int), double sub, double cota, double sobre){
+    double inicio, final, t;
+    bool promedio=false;
+    int i, k = 1000, n=500;
+    int v[MAX];
+
+    while (n <= MAX){
+        inicializacion(v, n);
+        
+        inicio = microsegundos();
+        algoritmo(v, n);
+        final = microsegundos();
+        t = final - inicio;
+
+        if (t < 500){
+            promedio = true;
+            inicio = microsegundos();
+            for (i = 0; i < k; i++){
+                inicializacion(v, n);
+                algoritmo(v, n);
+            }
+            final = microsegundos();
+            t = final - inicio;
+            inicio = microsegundos();
+            for (i = 0; i < k; i++){
+                inicializacion(v, n);
+            }
+            final = microsegundos();
+            t = (t - (final - inicio)) / k;
+        }
+
+        tabla(n,t, pow(n,sub), pow(n,cota), pow(n,sobre), promedio);
+        n = n * 2;
+    }
+}
+
+
+//Algoritmo 1
 int sumaSubMax1(int v[], int n){
     int sumaMax = 0;
     int estaSuma;
@@ -36,7 +109,7 @@ int sumaSubMax1(int v[], int n){
     return sumaMax;
 }
 
-// Algoritmo 2
+//Algoritmo 2
 int sumaSubMax2(int v[], int n){
     int estaSuma = 0;
     int sumaMax = 0;
@@ -56,7 +129,7 @@ int sumaSubMax2(int v[], int n){
     return sumaMax;
 }
 
-// Test 1
+//Test 1
 void test1(){
     int a[5] = {-9, 2, -5, -4, 6};
     int b[5] = {4, 0, 9, 2, 5};
@@ -66,88 +139,50 @@ void test1(){
     int f[5] = {7, -5, 6, 7, -7};
 
     printf("TEST 1\n");
-    printf("sumaSubMax1\tsumaSubMax2\n");
-    printf("%d\t\t", sumaSubMax1(a, 5));
+    printf("Secuencia\t\tsumaSubMax1\tsumaSubMax2\n");
+    imprimirVector(5, a);
+    printf("\t%d\t\t", sumaSubMax1(a, 5));
     printf("%d\n", sumaSubMax2(a, 5));
-    printf("%d\t\t", sumaSubMax1(b, 5));
+    imprimirVector(5, b);
+    printf("\t%d\t\t", sumaSubMax1(b, 5));
     printf("%d\n", sumaSubMax2(b, 5));
-    printf("%d\t\t", sumaSubMax1(c, 5));
+    imprimirVector(5, c);
+    printf("\t%d\t\t", sumaSubMax1(c, 5));
     printf("%d\n", sumaSubMax2(c, 5));
-    printf("%d\t\t", sumaSubMax1(d, 5));
+    imprimirVector(5, d);
+    printf("\t%d\t\t", sumaSubMax1(d, 5));
     printf("%d\n", sumaSubMax2(d, 5));
-    printf("%d\t\t", sumaSubMax1(e, 5));
+    imprimirVector(5, e);
+    printf("\t%d\t\t", sumaSubMax1(e, 5));
     printf("%d\n", sumaSubMax2(e, 5));
-    printf("%d\t\t", sumaSubMax1(f, 5));
+    imprimirVector(5, f);
+    printf("\t%d\t\t", sumaSubMax1(f, 5));
     printf("%d\n", sumaSubMax2(f, 5));
 }
 
-// Test 2
-void inicializar_semilla(){
-    srand(time(NULL));
-    /*se establece la semilla de una nueva serie de enteros pseudo-aleatorios*/
-}
-
-void aleatorio(int v[], int n){
-    int i, m = 2 * n + 1;
-    for (i = 0; i < n; i++){
-        v[i] = (rand() % m) - n;
-    } /* se generan números pseudoaleatorio entre -n y +n */
-}
-
+//Test 2
 void test2(){
     int i, n = 9;
     int v[n];
     printf("\n\nTEST 2\n");
-    printf("\t\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
-    
-    aleatorio(v, n);
-    printf("[");
-    for (i = 0; i < n; i++){
-        printf("%3d", v[i]);
-    }
-    printf(" ] \t\t");
-    printf("%d\t\t", sumaSubMax1(v, n));
-    printf("%d\n", sumaSubMax2(v, n));
+    printf("Secuencia\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
 
+    for (i=0; i<10; i++){
+        aleatorio(v, n);
+        imprimirVector(n,v);
+        printf("\t\t%d\t\t", sumaSubMax1(v, n));
+        printf("%d\n", sumaSubMax2(v, n));
+    }    
 }
 
-void test3(){
-    int n = 500;
-    double inicio, final, t;
-    
+void test3(){   
     printf("\n\nSumaSubMax 1\n");
-    printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
-    while (n <= 32000){
-        int v[n];
-        
-        aleatorio(v, n);
-        
-        inicio = microsegundos();
-        sumaSubMax1(v, n);
-        final = microsegundos();
-        t = final - inicio;
+    printf("\t     n\t\t   t(n)\t     t(n)/n^1.8\t       t(n)/n^2\t     t(n)/n^2.2\n");
+    tiemposEj(sumaSubMax1, aleatorio, 1.8, 2, 2.2);
 
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
-        n, t, t / (pow(n, 1.8)), t / (pow(n, 2)), t / (pow(n, 2.2)));
-        n = n * 2;
-    }
-    n = 500;
     printf("\n\nSumaSubMax 2\n");
-    printf("\tn\t\tt(n)\t\tt(n)/n^1.8\tt(n)/n^2\tt(n)/n^2.2\n");
-    while (n <= 32000){
-        int v[n];
-        
-        aleatorio(v, n);
-
-        inicio = microsegundos();
-        sumaSubMax2(v, n);
-        final = microsegundos();
-        t = final - inicio;
-
-        printf("\t%d\t\t%f\t%.10f\t%.10f\t%.10f\n",
-        n, t, t / (pow(n, 0.8)), t / n, t / (pow(n, 1.2)));
-        n = n * 2;
-    }
+    printf("\t     n\t\t   t(n)\t     t(n)/n^0.8\t\t t(n)/n\t     t(n)/n^1.2\n");
+    tiemposEj(sumaSubMax2, aleatorio, 0.8, 1, 1.2);
 }
 
 // MAIN
