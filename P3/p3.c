@@ -145,6 +145,43 @@ void tabla(int n, double t, double sub, double cota, double sobre, bool promedio
     }
 }
 
+void tiemposEj(void (*algoritmo) (int*,int), void (*inicializacion) (int*,int), double sub, double cota, double sobre){
+    double inicio, final, t;
+    bool promedio=false;
+    int i, k = 1000, n=500;
+    int v[TAM];
+    if(cota<0){ cota=n*log(n); }else{ cota=pow(n,cota); }
+
+    while (n <= TAM){
+        inicializacion(v, n);
+        
+        inicio = microsegundos();
+        algoritmo(v, n);
+        final = microsegundos();
+        t = final - inicio;
+
+        if (t < 500){
+            promedio = true;
+            inicio = microsegundos();
+            for (i = 0; i < k; i++){
+                inicializacion(v, n);
+                algoritmo(v, n);
+            }
+            final = microsegundos();
+            t = final - inicio;
+            inicio = microsegundos();
+            for (i = 0; i < k; i++){
+                inicializacion(v, n);
+            }
+            final = microsegundos();
+            t = (t - (final - inicio)) / k;
+        }
+
+        tabla(n,t, pow(n,sub), cota, pow(n,sobre), promedio);
+        n = n * 2;
+    }
+}
+
 //COMPLEJIDAD
 void comprobarComplejidad() {
     int i, n=1000, k=1000, v[128000];
@@ -208,45 +245,23 @@ void testOperaciones(){
     free(m);
 }
 
-//Orden Ascendente
-void testAscendente(){
-    int i, n=500, k=1000, v[128000];
-    double inicio, final, t;
-    bool promedio=false;
-
+//Test Complejidad Empirica
+void test(){
+    //Orden Ascendente
     printf("\n\nVECTOR EN ORDEN ASCENDENTE\n");
     printf("\t     n\t\t   t(n)\t    t(n)/n^0.92   t(n)/n*log(n)\t     t(n)/n^1.4\n");
+    tiemposEj(ordenarPorMonticulos, ascendente, 0.92, -1, 1.4);
 
-    while(n<=128000){
-        promedio=false;
-        ascendente(v, n);
-        
-        inicio=microsegundos();
-        ordenarPorMonticulos(v, n);
-        final=microsegundos();
-        t=final-inicio;
+    //Oden Descendente
+    printf("\n\nVECTOR EN ORDEN DESCENDENTE\n");
+    printf("\t     n\t\t   t(n)\t    t(n)/n^0.92   t(n)/n*log(n)\t     t(n)/n^1.4\n");
+    tiemposEj(ordenarPorMonticulos, descendente, 0.92, -1, 1.4);
 
-        if(t<500){
-			promedio = true;
-			inicio=microsegundos();
-			for(i=0;i<k;i++){
-				ascendente(v, n);
-				ordenarPorMonticulos(v,n);
-			}
-			final=microsegundos();
-			t=final-inicio;
-			inicio=microsegundos();
-			for(i=0;i<k;i++){
-				ascendente(v, n);
-			}
-			final=microsegundos();
-			t = (t - (final-inicio))/k;
-		}
+    //Orden Aleatorio
+    printf("\n\nVECTOR EN ORDEN ALEATORIO\n");
+    printf("\t     n\t\t   t(n)\t    t(n)/n^0.92   t(n)/n*log(n)\t     t(n)/n^1.4\n");
+    tiemposEj(ordenarPorMonticulos, aleatorio, 0.92, -1, 1.4);
 
-        tabla(n, t, pow(n,0.92), n*log(n), pow(n,1.4), promedio);
-
-        n=n*2;
-    }
 }
 
 //Orden Descendente
@@ -338,9 +353,7 @@ int main(){
     inicializar_semilla();
     testOperaciones();
     comprobarComplejidad();
-    testAscendente();
-    testDescendente();
-    testAleatorio();
+    test();
     
     return 0;
 }

@@ -56,9 +56,7 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
-    if(cota<0){ cota=n*log(n); }
-    
+void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){    
     if (promedio){
         printf("(*)\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
                n, t, t / sub, t / cota, t / sobre);
@@ -74,6 +72,7 @@ void tiemposEj(void (*algoritmo) (int*,int), void (*inicializacion) (int*,int), 
     bool promedio=false;
     int i, k = 1000, n=500;
     int v[MAX];
+    if(cota<0){ cota=n*log(n); }else{ cota=pow(n,cota); }
 
     while (n <= MAX){
         inicializacion(v, n);
@@ -100,7 +99,7 @@ void tiemposEj(void (*algoritmo) (int*,int), void (*inicializacion) (int*,int), 
             t = (t - (final - inicio)) / k;
         }
 
-        tabla(n,t, pow(n,sub), pow(n,cota), pow(n,sobre), promedio);
+        tabla(n,t, pow(n,sub), cota, pow(n,sobre), promedio);
         n = n * 2;
     }
 }
