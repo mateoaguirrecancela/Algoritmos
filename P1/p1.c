@@ -60,6 +60,7 @@ void tiemposEj(int (*algoritmo) (int*,int), void (*inicializacion) (int*,int), d
     int v[MAX];
 
     while (n <= MAX){
+        promedio = false;
         inicializacion(v, n);
         
         inicio = microsegundos();
@@ -84,7 +85,7 @@ void tiemposEj(int (*algoritmo) (int*,int), void (*inicializacion) (int*,int), d
             t = (t - (final - inicio)) / k;
         }
 
-        tabla(n,t, pow(n,sub), pow(n,cota), pow(n,sobre), promedio);
+        tabla(n,t, pow(n, sub), pow(n, cota), pow(n, sobre), promedio);
         n = n * 2;
     }
 }

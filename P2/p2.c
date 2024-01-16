@@ -75,6 +75,7 @@ void tiemposEj(void (*algoritmo) (int*,int), void (*inicializacion) (int*,int), 
     if(cota<0){ cota=n*log(n); }else{ cota=pow(n,cota); }
 
     while (n <= MAX){
+        promedio = false;
         inicializacion(v, n);
         
         inicio = microsegundos();
