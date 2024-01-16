@@ -244,8 +244,7 @@ void test4(){
 }
 
 
-int main()
-{
+int main(){
     inicializar_semilla();
 
     test1();
