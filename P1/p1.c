@@ -178,12 +178,12 @@ void test2(){
 
 void test3(){   
     printf("\n\nSumaSubMax 1\n");
-    printf("\t     n\t\t   t(n)\t     t(n)/n^1.8\t       t(n)/n^2\t     t(n)/n^2.2\n");
-    tiemposEj(sumaSubMax1, aleatorio, 1.8, 2, 2.2);
+    printf("\t     n\t\t   t(n)\t     t(n)/n^1.7\t       t(n)/n^2\t     t(n)/n^2.3\n");
+    tiemposEj(sumaSubMax1, aleatorio, 1.7, 2, 2.3);
 
     printf("\n\nSumaSubMax 2\n");
-    printf("\t     n\t\t   t(n)\t     t(n)/n^0.8\t\t t(n)/n\t     t(n)/n^1.2\n");
-    tiemposEj(sumaSubMax2, aleatorio, 0.8, 1, 1.2);
+    printf("\t     n\t\t   t(n)\t     t(n)/n^0.7\t\t t(n)/n\t     t(n)/n^1.3\n");
+    tiemposEj(sumaSubMax2, aleatorio, 0.7, 1, 1.3);
 }
 
 // MAIN

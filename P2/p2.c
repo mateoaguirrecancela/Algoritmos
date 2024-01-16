@@ -67,12 +67,19 @@ void tabla(int n, double t, double sub, double cota, double sobre, bool promedio
     }
 }
 
+double logaritmo(double cota, int n){
+    if(cota<0){
+        return (n*log(n));
+    }else{
+        return (pow(n,cota));
+    }
+}
+
 void tiemposEj(void (*algoritmo) (int*,int), void (*inicializacion) (int*,int), double sub, double cota, double sobre){
     double inicio, final, t;
     bool promedio=false;
     int i, k = 1000, n=500;
     int v[MAX];
-    if(cota<0){ cota=n*log(n); }else{ cota=pow(n,cota); }
 
     while (n <= MAX){
         promedio = false;
@@ -100,7 +107,7 @@ void tiemposEj(void (*algoritmo) (int*,int), void (*inicializacion) (int*,int), 
             t = (t - (final - inicio)) / k;
         }
 
-        tabla(n,t, pow(n,sub), cota, pow(n,sobre), promedio);
+        tabla(n,t, pow(n,sub), logaritmo(cota, n), pow(n,sobre), promedio);
         n = n * 2;
     }
 }
