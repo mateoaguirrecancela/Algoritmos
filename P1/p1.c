@@ -168,6 +168,7 @@ void test2(){
     printf("\n\nTEST 2\n");
     printf("Secuencia\t\t\t\tsumaSubMax1\tsumaSubMax2\n");
 
+    //Comprueba con 10 vectores aleatorios el funcionamiento de SSM1 y SSM2
     for (i=0; i<10; i++){
         aleatorio(v, n);
         imprimirVector(n,v);
@@ -183,7 +184,7 @@ void test3(){
 
     printf("\n\nSumaSubMax 2\n");
     printf("\t     n\t\t   t(n)\t     t(n)/n^0.7\t\t t(n)/n\t     t(n)/n^1.3\n");
-    tiemposEj(sumaSubMax2, aleatorio, 0.7, 1, 1.3);
+    tiemposEj(sumaSubMax2, aleatorio, 0.7, 0.95, 1.3);
 }
 
 // MAIN
