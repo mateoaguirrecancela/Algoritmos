@@ -42,7 +42,7 @@ double microsegundos(){ /*obtiene la hora del sistema en microsegundos*/
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-void tabla(int n, double t, double sub, double cota, double sobre, bool promedio){
+void tabla(int n,double t,double sub,double cota,double sobre,bool promedio){
     if (promedio){
         printf("(*)\t%6d\t%15.6f\t%15.6f\t%15.6f\t%15.6f\n",
                n, t, t / sub, t / cota, t / sobre);
@@ -53,7 +53,8 @@ void tabla(int n, double t, double sub, double cota, double sobre, bool promedio
     }
 }
 
-void tiemposEj(int (*algoritmo) (int*,int), void (*inicializacion) (int*,int), double sub, double cota, double sobre){
+void tiemposEj(int (*algoritmo) (int*,int), void (*inicializacion) (int*,int),
+               double sub, double cota, double sobre){
     double inicio, final, t;
     bool promedio=false;
     int i, k = 1000, n=500;
