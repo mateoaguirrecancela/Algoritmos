@@ -1,0 +1,180 @@
+  * Algoritmos -> Práctica 2
+  * Íker García Calviño <iker.gcalvino> -> grupo 4.4
+  * Juan Toirán Freire <juan.tfreire> -> grupo 4.4
+
+# Informe Práctica 2:
+  Ordenación por inserción y ordenación Shell:
+   El objetivo de la práctica es la ordenación ascendentemente un vector de
+   'n' números enteros.
+   Como algoritmos de ordenación se utilizarán la ordenación por inserción
+   y la ordenación Shell.
+
+    1. Características de la máquina:
+   --------------------------------------
+     OS: Ubuntu 20.04 LTS              
+     Kernel: 5.3.0-51-generic            
+     CPU: Intel Core i7-9750H a 4'50 GHz 
+     Memoria Principal: 8 GB            
+   --------------------------------------
+     Compilador: gcc 9.3.0
+
+    2. Unidades de medida:
+     Los tiempos se expresarán en microsegundos (ms).
+
+    3. Método:
+     En esta práctica utilizamos 2 algoritmos para la ordenación de vectores cuyos
+     elementos pueden estar ordenados de manera ascendiente, descendiente o aleatoria.
+     Dichos algoritmos son: Ordenación por inserción y ordenación por Shell.
+     
+     Para esta práctica utilizamos 2 cotas (subestimada y sobreestimada) para llegar a
+     los resultados de la cota ajustada.
+
+     k = 1000 <- En caso de que el tiempo de ejecución sea muy pequeño se calculará
+     una media de k ejecuciones del algoritmo.
+
+    4. Resultados:
+    
+Ordenación por inserción:
+	Vector ascendente:
+	 - Cota subestimada (sub): n^(0.8)
+	 - Cota ajustada (aj): n
+	 - Cota sobreestimada (sob): n^(1.2)
+
+	      n			       t(n)		    t(n)/sub		      t(n)/aj		     t(n)/sob
+(*)          500		         5.3350		 0.036979277382		 0.003670000000		 0.003078721599
+(*)         1000		        11.6560		 0.046403371800		 0.004656000000		 0.002927854825
+(*)         2000		         9.6690		 0.022108412735		 0.004834500000		 0.001057171789 -> dato anómalo
+(*)         4000		        18.0150		 0.023658449198		 0.004503750000		 0.000857358143
+(*)         8000		        29.7190		 0.022416210818		 0.003714875000		 0.000615639118
+(*)        16000		        63.4120		 0.027471062996		 0.003963250000		 0.000571778040
+(*)        32000		       123.4580		 0.030718446914		 0.003858062500		 0.000484550742
+(*)        64000		       226.1470		 0.032318176743		 0.003533546875		 0.000386344614
+	  128000		       535.0000		 0.043912261730		 0.004179687500		 0.000397833929
+	  256000		      1052.0000		 0.049593386766		 0.004109375000		 0.000340508362
+	  512000		      2782.0000		 0.075325349752		 0.005433593750		 0.000391952260
+	 1024000		      4193.0000		 0.065205600239		 0.004094726562		 0.000257137202
+	 2048000		     10779.0000		 0.096275217866		 0.005263183594		 0.000287728266
+                                             cte = 0.0042
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+	Vector descendente:
+	 - Cota subestimada (sub): n^(1.8)
+	 - Cota ajustada (aj): n^(2.0)
+	 - Cota sobreestimada (sob): n^(2.2)
+
+	      n			       t(n)		    t(n)/sub		      t(n)/aj	      	 t(n)/sob
+(*)          500		       377.3640		 0.005231358212		 0.001509456000		 0.000435538406
+	    1000		      1370.0000		 0.005454068237		 0.001370000000		 0.000344128441
+	    2000		      5684.0000		 0.006498304788		 0.001421000000		 0.000310733501
+	    4000		     22930.0000		 0.007528285319		 0.001433125000		 0.000272817405
+	    8000		     93733.0000		 0.008837522665		 0.001464578125		 0.000242713843
+	   16000		    369334.0000		 0.010000076465		 0.001442710937		 0.000208139893
+	   32000		   1493098.0000		 0.011609629300		 0.001458103516		 0.000183129522
+	   64000		   6017398.0000		 0.013436457543		 0.001469091309		 0.000160624872
+                                             cte = 0.0014
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+	Vector aleatorio:
+	 - Cota subestimada (sub): n^(1.8)
+	 - Cota ajustada (aj): n^(2.0))
+	 - Cota sobreestimada (sob): n^(2.2)
+
+	      n			       t(n)		    t(n)/sub		      t(n)/aj	         t(n)/sob
+(*)          500		       181.4640		 0.002515616716		 0.000725856000		 0.000209438477
+	    1000		       676.0000		 0.002691204473		 0.000676000000		 0.000169803523
+	    2000		      3137.0000		 0.003586414870		 0.000784250000		 0.000171493841
+	    4000		     11735.0000		 0.003852787973		 0.000733437500		 0.000139621119
+	    8000		     49499.0000		 0.004666963976		 0.000773421875		 0.000128173562
+	   16000		    195746.0000		 0.005300012909		 0.000764632813		 0.000110313569
+	   32000		    739456.0000		 0.005749662811		 0.000722125000		 0.000090694799
+	   64000		   2926705.0000		 0.005935141514		 0.000714527588		 0.000078123737
+	  128000		  11820440.0000		 0.006579764238		 0.000721462402		 0.000068670737
+                                             cte = 0.00074
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+Ordenación por Shell:
+	Vector ascendente:
+	 - Cota subestimada (sub): n^(0.8)
+	 - Cota ajustada (aj): n^(1.01)*log2(n)
+	 - Cota sobreestimada (sob): n^(1.2)
+
+	      n			       t(n)		    t(n)/sub		      t(n)/aj		     t(n)/sob
+(*)          500		        17.3640		 0.120357670565		 0.003640003382		 0.010020416466
+(*)         1000		        37.7500		 0.150285456884		 0.003535130688		 0.009482371279
+(*)         2000		        87.1150		 0.199190647993		 0.003681399483		 0.009524823707
+(*)         4000		       185.9510		 0.244202735878		 0.003575829128		 0.008849658839
+(*)         8000		       407.8080		 0.307598172932		 0.003593652360		 0.008447880399
+	   16000		       836.0000		 0.362168180549		 0.003396094491		 0.007538107008
+	   32000		      2178.0000		 0.541923385916		 0.004099745674		 0.008548263512
+	   64000		      3967.0000		 0.566915356561		 0.003475603049		 0.006777136480
+	  128000		      9221.0000		 0.756850402638		 0.003775043948		 0.006856872253
+	  256000		     25131.0000		 1.184725668076		 0.004824376845		 0.008134330460
+	  512000		     44933.0000		 1.216604579589		 0.004057251678		 0.006330550280
+	 1024000		     93881.0000		 1.459949190576		 0.003998419678		 0.005757285402
+	 2048000		    193632.0000		 1.729470543258		 0.003899624286		 0.005168698367
+                                             cte = 0.0036
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+	Vector descendente:
+	 - Cota subestimada (sub): n^(1.0)
+	 - Cota ajustada (aj): n^(1.09)
+	 - Cota sobreestimada (sob): n^(1.3)
+
+	      n			       t(n)		    t(n)/sub		      t(n)/aj		     t(n)/sob
+(*)          500		        28.2250		 0.056450000000		 0.032266855625		 0.008749292685
+(*)         1000		        61.1180		 0.061118000000		 0.032822309331		 0.007694300332
+(*)         2000		       130.5630		 0.065281500000		 0.032938015169		 0.006675458897
+(*)         4000		       291.6150		 0.072903750000		 0.034559262721		 0.006055247103
+	    8000		       584.0000		 0.073000000000		 0.032512080478		 0.004924882394
+	   16000		      1530.0000		 0.095625000000		 0.040012957215		 0.005240050270
+	   32000		      2598.0000		 0.081187500000		 0.031917265068		 0.003613634093
+	   64000		      5738.0000		 0.089656250000		 0.033114970482		 0.003241354845
+	  128000		     13696.0000		 0.107000000000		 0.037130849077		 0.003142105673
+	  256000		     31285.0000		 0.122207031250		 0.039843235383		 0.002914903652
+	  512000		     63269.0000		 0.123572265625		 0.037851815347		 0.002394087510
+	 1024000		    131925.0000		 0.128833007813		 0.037076621215		 0.002027389343
+	 2048000		    277740.0000		 0.135615234375		 0.036668131753		 0.001733442711
+                                             cte = 0.035
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+	Vector aleatorio:
+	 - Cota subestimada (sub): n^(1.0)
+	 - Cota ajustada (aj): n^(1.24))
+	 - Cota sobreestimada (sob): n^(1.4)
+
+	      n			       t(n)		    t(n)/sub		      t(n)/aj		     t(n)/sob
+(*)	     500		        61.8930		 0.123786000000		 0.027855998373		 0.010305843133
+(*)	    1000		       146.1660		 0.146166000000		 0.027851357130		 0.009222451121
+(*)	    2000		       334.5580		 0.167279000000		 0.026989461819		 0.007998884491
+	    4000		       763.0000		 0.190750000000		 0.026059744218		 0.006912586042
+	    8000		      1881.0000		 0.235125000000		 0.027199267714		 0.006457476194
+	   16000		      4063.0000		 0.253937500000		 0.024873565510		 0.005285412003
+	   32000		      9515.0000		 0.297343750000		 0.024661689159		 0.004690280572
+	   64000		     20049.0000		 0.313265625000		 0.022000347878		 0.003744904545
+	  128000		     55859.0000		 0.436398437500		 0.025950922114		 0.003953658910
+	  256000		    114265.0000		 0.446347656250		 0.022474791269		 0.003064624523
+	  512000		    251080.0000		 0.490390625000		 0.020908234789		 0.002551726798
+	 1024000		    602423.0000		 0.588303710938		 0.021238781562		 0.002319965920
+	 2048000		   1553624.0000		 0.758605468750		 0.023189788122		 0.002267169489
+                                             cte = 0.023
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+    5. Conclusión:
+      Teniendo en cuenta los resultados obtenidos en las tablas de los tiempos de
+    los anteriores algoritmos y el crecimiento del tiempo de dichos algoritmos
+    podemos afirmar que:
+    
+    > El algoritmo de Ordenación por Inserción es más sencillo de implementar que el
+    algoritmo de Ordenación Shell.
+    
+    > El algoritmo de Ordenación Shell es más eficiente que el de Inserción.
+
+    > El algoritmo de Inserción no trabaja bien con vectores de tamaños muy gandes,
+    por ello en el test hemos ajustado el tamaño de los vectores; mientras que el
+    algoritmo de Ordenación Shell trabaja bien con todos esos tamaños.

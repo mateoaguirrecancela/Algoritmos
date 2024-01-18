@@ -1,0 +1,85 @@
+  * Algoritmos -> Práctica 1
+  * Íker García Calviño <iker.gcalvino> -> grupo 4.4
+  * Juan Toirán Freire <juan.tfreire> -> grupo 4.4
+
+# Informe Práctica 1:
+   La sucesión de Fibonacci:
+   El objetivo de la práctica es comprobar empíricamente el análisis teórico 
+   de la eficiencia de tres algoritmos diferentes que permiten calcular esta 
+   sucesión, familiarizándose además con el problema de la medición de tiempos.
+
+   1. Características de la máquina:
+   --------------------------------------
+     OS: Ubuntu 18.04.4 LTS              
+     Kernel: 5.3.0-51-generic            
+     CPU: Intel Core i7-9750H a 4'50 GHz 
+     Memoria Principal: 16 GB            
+   --------------------------------------
+     Compilador: gcc 7.4.0
+
+   2. Unidades de medida:
+   Los tiempos se expresarán en microsegundos.
+
+   3. Método:
+   Comparación de los tiempos de ejecución, tomando como referencia para el
+   cálculo de Fib1 los valores: 2, 4, 8, 16 y 32; y para Fib2 y Fib3: 1.000,
+   10.000, 100.000, 1.000.000 y 10.000.000 (nota: la sucesión de Fibonacci
+   crece muy deprisa: fib(100) tiene ya 21 cifras).
+   
+   Se usarán 2 cotas (subestimada y sobreestimada) para afianzar los
+   resultados de la cota ajustada.
+
+   k = 1000 <- En caso de que el tiempo de ejecución sea muy pequeño se
+   calculará una media de k ejecuciones del algoritmo.
+
+   4. Resultados:
+                                Cota subestimada:   Cota exacta:   Cota sobreestimada:
+ Alg. Fib1   n           t(n)       t(n)/1,1^n     t(n)/((1+sqrt(5))/2)^n     t(n)/2^n
+
+ (*)         2           0.00500    0.004132231405    0.001909830056    0.001250000000
+ (*)         4           0.01500    0.010245201830    0.002188470506    0.000937500000
+ (*)         8           0.15100    0.070442614412    0.003214221674    0.000589843750
+ (*)        16           5.47400    1.191301889315    0.002480290496    0.000083526611
+            32       12308.00000  582.936920686591    0.002526870583    0.000002865680
+                                                       cte. = 0.0024
+
+
+                                Cota subestimada:   Cota exacta:   Cota sobreestimada:
+ Alg. Fib2   n           t(n)        t(n)/(n^0.8)        t(n)/n        t(n)/(n*log(n))
+
+ (*)      1000           2.45900    0.009789455324    0.002459000000    0.000355976710
+ (*)     10000          26.70100    0.016847192055    0.002670100000    0.000289902424
+ (*)    100000         252.70900    0.025270900000    0.002527090000    0.000219500248
+       1000000        2485.00000    0.039384595833    0.002485000000    0.000179870298
+      10000000       24891.00000    0.062523365167    0.002489100000    0.000154428914
+                                                       cte. = 0.0025
+
+
+                                Cota subestimada:   Cota exacta:   Cota sobreestimada:
+ Alg. Fib3   n           t(n)      t(n)/sqrt(log(n))   t(n)/log(n))      t(n)/(n^0.5)
+
+ (*)      1000           0.03700    0.014077750125    0.005356298610    0.001170042734
+ (*)     10000           0.04800    0.015816245496    0.005211533783    0.000480000000
+ (*)    100000           0.05800    0.017093663371    0.005037815990    0.000183412104
+ (*)   1000000           0.06800    0.018294706358    0.004922004128    0.000068000000
+ (*)  10000000           0.08100    0.020175678766    0.005025407576    0.000025614449
+                                                       cte. = 0.0051
+
+                          (*) Tiempo promedio en 1000 ejecuciones
+
+   5. Conclusión:
+   > En el algoritmo de Fibonacci (Fib1) el crecimiento del tiempo t(n) es exponecial
+   y se puede ver que se disparan los valores en la cota subestimada.
+
+   > En el algortimo de Fibonacci (Fib2) el crecimiento del tiempo t(n) es lineal
+   sobretodo si lo comparamos con el primero y la cota exacta mantiene su valor 
+   mientras que la subestimada y la sobreestimada varian bastante; la subestimada
+   cuando n -> Infinito , tiende a Infinito.
+
+   > En el algortimo de Fibonacci (Fib3) el crecimiento del tiempo t(n) es muy bajo, 
+   el último dato de la cota subestimada aumenta ligeramente en comparación con el
+   primer dato y la sobreestimada disminuye bastante, realcizando la misma comparación.
+
+   En resumen el algoritmo que menores tiempos consigue en sus ejecuciones y por tanto 
+   más óptimo para realizar si se necesitan diversas iteraciones es Fib3, que a pesar de
+   su aparente complejidad es el mejor.

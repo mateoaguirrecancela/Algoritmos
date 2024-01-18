@@ -1,0 +1,83 @@
+  * Algoritmos -> Práctica 3
+  * Íker García Calviño <iker.gcalvino> -> grupo 4.4
+  * Juan Toirán Freire <juan.tfreire> -> grupo 4.4
+
+# Informe Práctica 3:
+  Inserción y Búsqueda en árboles binarios
+   Vamos a estudiar la complejidad computacional de las operaciones insertar y buscar
+   en árboles binarios de búsqueda de números enteros y con un campo con la frecuencia
+   de apariciones.
+
+    1. Características de la máquina:
+   --------------------------------------
+     OS: Ubuntu 20.04 LTS              
+     Kernel: 5.3.0-51-generic            
+     CPU: Intel Core i7-9750H a 4'50 GHz 
+     Memoria Principal: 8 GB            
+   --------------------------------------
+     Compilador: gcc 9.3.0
+
+    2. Unidades de medida:
+     Los tiempos se expresarán en microsegundos (ms).
+
+    3. Método:
+     En esta práctica utilizamos 2 algoritmos uno para la inserción de elementos y otro
+     para la búsqueda de elementos en un árbol binario.
+
+     Se lleva a cabo un estudio para distintos valores de n, tanto la inserción de los
+     distintos valores de un vector aleatorio [-n...+n] en un árbol vacío y seguidamente
+     la búsqueda de otros n elementos de otro vector generado aleatoriamente en el mismo
+     intervalo. 
+
+     Para esta práctica también utilizamos 2 cotas (subestimada y sobreestimada) para
+     llegar a los resultados de la cota ajustada.
+
+     k = 1000 <- En caso de que el tiempo de ejecución sea muy pequeño se calculará
+     una media de k ejecuciones del algoritmo.
+
+    4. Resultados:
+     Inserción de n elementos:
+      - Cota subestimada [f(n)]: n^(1.1)
+      - Cota ajustada [g(n)]: n^(1.25)
+      - Cota sobreestimada [h(n)]: n^(1.3)
+            n               t(n)          t(n)/f(n)         t(n)/g(n)          t(n)/h(n)
+           8000          6022.0000     0.306437397614    0.079593621855     0.050783633179 -> d. anómalo
+          16000         13104.0000     0.311079866206    0.072820541841     0.044879489370 -> d. anómalo
+          32000	        19648.0000     0.217597235407    0.030907207583     0.027328977158
+          64000	        21175.0000     0.109402046886    0.020801681932     0.011961604888
+         128000	        46021.0000     0.110923888267    0.019008313639     0.010558034840
+         256000        119029.0000     0.133840892231    0.020670587881     0.011090237073
+         512000	       301910.0000     0.158372780329    0.022043981960     0.011424219764
+        1024000	       695641.0000     0.170237494330    0.021355523644     0.010690431304
+                                                           cte = 0.02
+
+     Búsqueda de n elementos:
+      - Cota subestimada [f(n)]: n^(1.1)
+      - Cota ajustada [g(n)]: n^(1.25)
+      - Cota sobreestimada [h(n)]: n^(1.3)
+            n               t(n)          t(n)/f(n)         t(n)/g(n)        t(n)/h(n)
+           8000          1919.0000     0.097650841252    0.025363693182    0.016182961154
+          16000          4712.0000     0.111859610009    0.026185164313    0.016137984884
+          32000         15078.0000     0.166985500583    0.035229482693    0.020972430659
+          64000         32380.0000     0.167293425180    0.031809136292    0.018291228631
+         128000         61365.0000     0.147907355413    0.025345932649    0.014078220985
+         256000        156082.0000     0.175504743728    0.027105215515    0.014542560073
+         512000        421862.0000     0.221295942019    0.030802286501    0.015963181736
+        1024000       1092677.0000     0.267400274843    0.033544154972    0.016791978054
+                                                           cte = 0.03
+                                    (*) Tiempo promedio en 1000 ejecuciones
+
+    5. Conclusión:
+      Teniendo en cuenta los resultados obtenidos en las tablas de los tiempos de
+    los anteriores algoritmos y el crecimiento del tiempo de dichos algoritmos
+    podemos afirmar que:
+
+    > Los tiempos de inserción por norma general son menores que los de búsqueda.
+
+    > A partir de los 64000 elementos la operación buscar tarda tiempos mayores posiblemente
+    debido al recorrido que realiza del árbol hasta alcanzar NULL.
+
+    > En el caso de insertar un vector (v) en un árbol vacío es el mismo recorrido que realiza
+    la búsqueda de ese mismo vector.
+
+    > La recurrencia de ambas funciones es similar para n elementos.

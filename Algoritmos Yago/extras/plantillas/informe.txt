@@ -1,0 +1,46 @@
+  * Algoritmos
+  * Íker García Calviño <iker.gcalvino> -> grupo 4.4
+
+# Informe Práctica 4:
+
+
+    1. Características de la máquina:
+   --------------------------------------
+     OS: Ubuntu 20.04 LTS                
+     Kernel: 5.4.0-28-generic            
+     CPU: Intel Core i5-8250U a 1'80 GHz 
+     Memoria Principal: 8 GB             
+   --------------------------------------
+     Compilador: gcc 9.3.0
+
+    2. Unidades de medida:
+     Los tiempos se expresarán en microsegundos (ms).
+
+    3. Método:
+
+
+     Para esta práctica utilizamos 2 cotas (subestimada y sobreestimada) para
+     llegar a los resultados de la cota ajustada.
+
+     k = 1000 <- En caso de que el tiempo de ejecución sea muy pequeño
+     se calculará una media de k ejecuciones del algoritmo.
+
+    4. Resultados:
+     ~  ~
+
+   - Cota subestimada (sub): n
+   - Cota ajustada (aj): n
+   - Cota sobreestimada (sob): n
+
+        n              t(n)          t(n)/sub           t(n)/aj            t(n)/sob
+                                                       cte. = x
+                              (*) Tiempo promedio en 1000 ejecuciones
+    5. Conclusión:
+      Teniendo en cuenta los resultados obtenidos en las tablas de los tiempos
+      del anterior algoritmo podemos afirmar que:
+
+    > 
+    
+    > 
+
+    > 

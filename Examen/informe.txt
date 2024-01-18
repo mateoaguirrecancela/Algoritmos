@@ -1,0 +1,109 @@
+AUTOR:
+ - Mateo Aguirre Cancela           mateo.aguirre@udc.es
+ 
+INTRODUCCIÓN:
+    En esta práctica se realizará el análisis del algoritmo dado en el Examen de Prácticas, éste es un algoritmo de ordenación el cual recibe un vector como entrada y devuelve este mismo vector ordenado.  
+    Para ello se realizarán pruebas con el fin de validar la implementación y se realizará un análisis empírico de la complejidad computacional del algoritmo para 3 situaciones iniciales: vector ordenado
+    de manera ascendente, descendente y desordenado. De esta manera mediremos el tiempo de ejecución del algoritmo para vectores de diferentes tamaños.
+    Si nos fijamos podemos observar que se trata del algoritmo Quicksort o Ordenación Rápida. Uno de los mejores algoritmos de ordenacion en cuanto a eficancia y rendimiento, por lo que uele ser la eleccion
+    de muchos a la hora de resolver problemas que requieran de ordenación. Este algoritmo se basa en el principio de dividir y vencerás, implementándolo de manera recursiva y en esta implementación selecciona al segundo elemento como pivote
+
+TEST:
+    Inicializacion Aleatoria
+    [ 11 -1  7  0  7 12 -2  6  3-16-10 -9 -2 -7 -4 -4 10 ]
+    Algoritmo de Ordenacion
+    [-16-10 -9 -7 -4 -4 -2 -2 -1  0  3  6  7  7 10 11 12 ]
+
+    Inicializacion Descente
+    [ 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1 ]
+    Algoritmo de Ordenacion
+    [  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 ]
+
+    Inicializacion Ascendente
+    [  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 ]
+    Algoritmo de Ordenacion
+    [  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 ]
+
+ESPECIFIACIONES DE LA MÁQUINA:
+	·Modelo: HUAWEI MateBook 14 AMD 2021
+	·Procesador: AMD Ryzen 5 5500U
+	·Memoria RAM: 8gb
+	·Sistema operativo: Linux Ubuntu 22.04.3 LTS
+	·Kernel: 6.2.0-33-generic
+
+ACLARACIONES:
+	Todas las unidades de tiempo estan medidas en microsegundos.
+	El valor de n sigue una progresión geométrica de razón dos.
+	Los símbolos (*) colocados a la izquierda de ciertos tiempos indican que el tiempo de ejecución para ese valor de n es inferior a 500 microsegundos. Esto implica que el algoritmo se repitió 1000 (contante k) veces y posteriormente se calculó una media.
+
+TABLAS DE TIEMPOS:
+
+Tabla para demostrar la complejidad de dijkstra O(n):
+    VECTOR EN ORDEN ASCENDENTE
+    Algoritmo de Ordenacion
+                n              t(n)      t(n)/n^1.7     t(n)/n^1.99      t(n)/n^2.3
+    (*)        500        62.323000        0.001608        0.000265        0.000039
+    (*)       1000       211.208000        0.001678        0.000226        0.000027
+              2000       864.000000        0.002112        0.000233        0.000022
+              4000      3300.000000        0.002483        0.000224        0.000017
+              8000     12967.000000        0.003003        0.000222        0.000014
+             16000     59892.000000        0.004269        0.000258        0.000013
+             32000    219323.000000        0.004812        0.000238        0.000010
+             64000    880142.000000        0.005944        0.000240        0.000008
+
+
+    VECTOR EN ORDEN DESCENDENTE
+    Algoritmo de Ordenacion
+                n              t(n)      t(n)/n^1.7     t(n)/n^1.99      t(n)/n^2.3
+    (*)        500       185.351000        0.004784        0.000789        0.000115
+              1000       729.000000        0.005791        0.000781        0.000092
+              2000      2839.000000        0.006941        0.000766        0.000073
+              4000     11307.000000        0.008508        0.000768        0.000059
+              8000     46048.000000        0.010665        0.000787        0.000049
+             16000    180367.000000        0.012857        0.000776        0.000039
+             32000    719148.000000        0.015778        0.000779        0.000031
+             64000   2835504.000000        0.019148        0.000773        0.000025
+
+
+    VECTOR DESORDENADO
+    Algoritmo de Ordenacion
+                n              t(n)      t(n)/n^0.8      t(n)/n^1.1      t(n)/n^1.4
+    (*)        500        28.933000        0.200548        0.031083        0.004818
+    (*)       1000        63.162000        0.251452        0.031656        0.003985
+    (*)       2000       136.946000        0.313130        0.032020        0.003274
+    (*)       4000       295.284000        0.387786        0.032209        0.002675
+              8000       622.000000        0.469157        0.031651        0.002135
+             16000      1381.000000        0.598271        0.032784        0.001796
+             32000      2833.000000        0.704899        0.031375        0.001396
+             64000      6121.000000        0.874739        0.031625        0.001143
+-COTAS:
+    Ascendente:
+    cota subestimada:  n^1.7
+    cota ajustada:     n^1.99
+    cota sobrestimada: n^2.3
+
+    Descente:
+    cota subestimada:  n^1.7
+    cota ajustada:     n^1.99
+    cota sobrestimada: n^2.3
+
+    Desordenado:
+    cota subestimada:  n^0.8
+    cota ajustada:     n^1.1
+    cota sobrestimada: n^1.4
+
+(#) ANOMALIAS:
+    -No se observan anomalías.
+
+-OBSERVACIONES:
+	-Los resultados de la cota subestimada nos ofrece unos valores ascendentes.
+	-Al contrario ocurre con la sobrestimada, pues estos decrecen.
+	-Y la cota ajustada se aproxima a 0.000238 en vectores ascendentes, a 0.000772 en vectores descendentes y a 0.0318 en vectores desordenados
+
+CONCLUSIONES:
+    Al analizar los datos de la tabla de tiempos para demostrar la complejidad del algoritmo Quicksort, se puede observar una tendencia consistente con una complejidad aproximada de O(n^1.1) para los casos de vector desordenado.
+    A medida que el tamaño del grafo aumenta, el tiempo de ejecución se incrementa significativamente, lo que sugiere que el algoritmo de Quicksort se vuelve más costoso computacionalmente a medida que se manejan vectores más grandes.
+    A pesar de que la complejidad teórica para el algoritmo de Quicksort es de O(n*log(n)), el análisis de la complejidad empírica nos proporcionó una complejidad aproximada de O(n^1.1), pero que esta se aproxima a la complejidad teórica al incrementar el valor de n.
+    Sin embargo en los casos de vector ascendente y descendente esto cambia, se observa una tendencia consistente con una complejidad aproximada de O(n^1.99) para ambos casos. Muy aproximada a la complejidad teórica para su peor caso, O(n^2),
+    pero se van aproximando a estas a medida que aumentamos el tamaño de n.
+    Viendo los resultados podemos concluir y afirmar la eficancia y gran rendimiento del algoritmo de Quicksort, y ademas observamos que los peores casos son cuando se enfrenta a vectores ascendentes o descentes, sin embargo con vectores aleatorios tiene su caso medio

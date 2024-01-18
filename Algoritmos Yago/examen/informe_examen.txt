@@ -1,0 +1,84 @@
+  * Algoritmos
+  * Íker García Calviño <iker.gcalvino> -> grupo 4.4
+
+# Informe Examen:
+	El problema consiste en ordenar ascendentemente un vector.
+
+    1. Características de la máquina:
+   --------------------------------------
+     OS: Ubuntu 20.04 LTS                
+     Kernel: 5.4.0-28-generic            
+     CPU: Intel Core i5-8250U a 1'80 GHz 
+     Memoria Principal: 8 GB             
+   --------------------------------------
+     Compilador: gcc 9.3.0
+
+    2. Unidades de medida:
+     Los tiempos se expresarán en microsegundos (ms).
+
+    3. Método:
+	 Utilizaremos la implementación de ordenar y auxord.
+
+     Para esta práctica utilizamos 2 cotas (subestimada y sobreestimada) para
+     llegar a los resultados de la cota ajustada.
+
+     k = 1000 <- En caso de que el tiempo de ejecución sea muy pequeño
+     se calculará una media de k ejecuciones del algoritmo.
+
+    4. Resultados:
+     ~ Examen ~
+	Vector ascendente:
+	 - Cota subestimada (sub): n^(1.6)
+	 - Cota ajustada (aj): n^(2.0)
+	 - Cota sobreestimada (sob): n^(2.25)
+
+	      n				  t(n)		     t(n)/sub		     t(n)/aj		     t(n)/sob
+	     500		      1084.0000		 0.052080755457		 0.004336000000		 0.000916952360
+	    1000		      4556.0000		 0.072207733849		 0.004556000000		 0.000810184099
+	    2000		     15839.0000		 0.082809424367		 0.003959750000		 0.000592120734
+	    4000		     25961.0000		 0.044773952176		 0.001622562500		 0.000204026433
+	    8000		     79733.0000		 0.045362201750		 0.001245828125		 0.000131730286
+	   16000		    310779.0000		 0.058325664136		 0.001213980469		 0.000107939824
+	   32000		   1228859.0000		 0.076078525922		 0.001200057617		 0.000089725235
+                                                       cte. = 0.002
+                              (*) Tiempo promedio en 1000 ejecuciones
+
+	Vector descendente:
+	 - Cota subestimada (sub): n^(1.5)
+	 - Cota ajustada (aj): n^(2.0)
+	 - Cota sobreestimada (sob): n^(2.25)
+
+	      n				  t(n)		     t(n)/sub		     t(n)/aj		     t(n)/sob
+(*)	     500		       522.5310		 0.046736593454		 0.002090124000		 0.000442007411
+	    1000		      2356.0000		 0.074503261674		 0.002356000000		 0.000418962629
+	    2000		      8934.0000		 0.099885156555		 0.002233500000		 0.000333986150
+	    4000		     32833.0000		 0.129783828020		 0.002052062500		 0.000258033199
+	    8000		    133806.0000		 0.186999569873		 0.002090718750		 0.000221066593
+	   16000		    534345.0000		 0.264023008800		 0.002087285156		 0.000185588811
+	   32000		   2078902.0000		 0.363169233638		 0.002030177734		 0.000151791190
+                                                       cte. = 0.002
+                              (*) Tiempo promedio en 1000 ejecuciones
+
+	Vector aleatorio:
+	 - Cota subestimada (sub): n^(1.5)
+	 - Cota ajustada (aj): n^(2.0)
+	 - Cota sobreestimada (sob): n^(2.25)
+
+	      n				  t(n)		     t(n)/sub		     t(n)/aj		     t(n)/sob
+(*)	     500		        43.5440		 0.003894693760		 0.000174176000		 0.000036833739
+(*)	    1000		        96.0480		 0.003037304447		 0.000096048000		 0.000017080018
+(*)	    2000		       211.6530		 0.002366352478		 0.000052913250		 0.000007912376
+	    4000		       552.0000		 0.002181971586		 0.000034500000		 0.000004338145
+	    8000		      1261.0000		 0.001762301075		 0.000019703125		 0.000002083352
+	   16000		      2626.0000		 0.001297522052		 0.000010257812		 0.000000912063
+	   32000		      6425.0000		 0.001122401309		 0.000006274414		 0.000000469122
+                                                       cte. = 0.00005
+                              (*) Tiempo promedio en 1000 ejecuciones
+    5. Conclusión:
+      Teniendo en cuenta los resultados obtenidos en las tablas de los tiempos
+      del anterior algoritmo podemos afirmar que:
+
+    > La función ordenar tarda mucho menos tiempo con vectores ordenados de manera aleatoria.
+    
+    > Para vectores ordenados ascendentemente tarda tiempos mayores que descendente, lo
+	que es curioso porque el vector ya está ordenado previamente. Exactamente sobre el 50%.
